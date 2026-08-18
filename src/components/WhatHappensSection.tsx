@@ -84,148 +84,245 @@ function ScallopedFlowerButton({
 
 export default function WhatHappensSection() {
   return (
-    <section className="relative w-[402px] min-h-[960px] bg-[#FB0146] text-white pt-[32px] pb-[44px] px-[12px] overflow-hidden select-none">
-      {/* Main Title */}
-      <div className="relative z-10 text-center mt-[10px] mb-[6px]">
-        <h2
-          className="uppercase text-white text-center"
-          style={{
-            fontFamily: "var(--font-anton), Anton, sans-serif",
-            fontWeight: 400,
-            fontStyle: "normal",
-            fontSize: "64px",
-            lineHeight: "80px",
-            letterSpacing: "-0.8px",
-            textAlign: "center",
-            verticalAlign: "middle",
-            textTransform: "uppercase",
-          }}
-        >
-          WHAT
-          <br />
-          HAPPENS AT
-          <br />
-          <span className="text-[#FFD200]">CREATATHON?</span>
-        </h2>
-      </div>
-
-      {/* Subtitle */}
-      <div className="relative z-10 text-center mb-[28px] px-2">
-        <p
-          className="text-white text-center mx-auto"
-          style={{
-            fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
-            fontWeight: 600,
-            fontSize: "24px",
-            lineHeight: "120%",
-            letterSpacing: "-1px",
-            textAlign: "center",
-            verticalAlign: "middle",
-          }}
-        >
-          There is not just one way to experience
-          <br />
-          Creatathon.
-        </p>
-      </div>
-
-      {/* 5 Organic Scalloped Flower Buttons Layout Matching Reference */}
-      <div className="relative z-10 flex flex-col items-center gap-[12px] w-full">
-        {/* Row 1: Green & Blue Buttons */}
-        <div className="flex items-center justify-center gap-[14px] w-full">
-          <ScallopedFlowerButton
-            fillColor="#00D890"
-            textColor="#0149E7"
-            width="165px"
-            height="165px"
-            pathD={SHAPE_PATHS.greenTop.d}
-            viewBox={SHAPE_PATHS.greenTop.viewBox}
-            shadowColor="#FF0052"
+    <section
+      id="experience"
+      className="relative w-full max-w-[402px] md:max-w-none min-h-[960px] md:min-h-auto bg-[#FB0146] text-white pt-[32px] pb-[44px] md:py-24 lg:py-28 px-[12px] md:px-8 overflow-hidden select-none mx-auto"
+    >
+      <div className="w-full max-w-7xl mx-auto flex flex-col items-center">
+        {/* Main Title */}
+        <div className="relative z-10 text-center mt-[10px] mb-[6px] md:mb-4">
+          <h2
+            className="uppercase text-white text-center font-anton text-[64px] md:text-[84px] lg:text-[104px] leading-[80px] md:leading-[92px] lg:leading-[108px] tracking-[-0.8px]"
           >
-            <span>
-              COME TO
-              <br />
-              LEARN
-            </span>
-          </ScallopedFlowerButton>
-
-          <ScallopedFlowerButton
-            fillColor="#0149E7"
-            textColor="#FFD200"
-            width="165px"
-            height="165px"
-            pathD={SHAPE_PATHS.blueTop.d}
-            viewBox={SHAPE_PATHS.blueTop.viewBox}
-            shadowColor="#FF0052"
-          >
-            <span>
-              COME TO
-              <br />
-              CREATE
-            </span>
-          </ScallopedFlowerButton>
+            WHAT
+            <br />
+            HAPPENS AT
+            <br />
+            <span className="text-[#FFD200]">CREATATHON?</span>
+          </h2>
         </div>
 
-        {/* Row 2: White & Yellow Buttons */}
-        <div className="flex items-center justify-between gap-[2px] w-full px-1 -mt-[16px]">
-          <ScallopedFlowerButton
-            fillColor="#FFFFFF"
-            textColor="#0149E7"
-            width="192px"
-            height="192px"
-            pathD={SHAPE_PATHS.whiteMid.d}
-            viewBox={SHAPE_PATHS.whiteMid.viewBox}
-            shadowColor="#FF0052"
+        {/* Subtitle */}
+        <div className="relative z-10 text-center mb-[28px] md:mb-16 px-2">
+          <p
+            className="text-white text-center mx-auto text-[24px] md:text-[30px] lg:text-[34px] leading-[120%] tracking-[-1px] font-semibold"
+            style={{
+              fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+            }}
           >
-            <span>
-              COME TO
-              <br />
-              MEET
-              <br />
-              PEOPLE
-            </span>
-          </ScallopedFlowerButton>
-
-          <ScallopedFlowerButton
-            fillColor="#FFD200"
-            textColor="#FF0052"
-            width="192px"
-            height="192px"
-            pathD={SHAPE_PATHS.yellowMid.d}
-            viewBox={SHAPE_PATHS.yellowMid.viewBox}
-            shadowColor="#0054D9"
-          >
-            <span>
-              COME TO
-              <br />
-              MEET
-              <br />
-              PEOPLE
-            </span>
-          </ScallopedFlowerButton>
+            There is not just one way to experience
+            <br className="block" />
+            Creatathon.
+          </p>
         </div>
 
-        {/* Row 3: Blue Large Centered Button (Matching 1st Image) */}
-        <div className="flex items-center justify-center w-full -mt-[20px]">
-          <ScallopedFlowerButton
-            fillColor="#0054D9"
-            textColor="#FFFFFF"
-            width="235px"
-            height="235px"
-            pathD={SHAPE_PATHS.blueBottom.d}
-            viewBox={SHAPE_PATHS.blueBottom.viewBox}
-            shadowColor="#FF0052"
-          >
-            <span>
-              COME TO
-              <br />
-              DISCOVER
-              <br />
-              WHAT&apos;S
-              <br />
-              NEXT.
-            </span>
-          </ScallopedFlowerButton>
+        {/* Mobile: 5 Scalloped Flower Buttons Layout */}
+        <div className="flex md:hidden relative z-10 flex-col items-center gap-[10px] w-full max-w-[390px] mx-auto">
+          {/* Row 1: Green & Blue Buttons */}
+          <div className="flex items-center justify-center gap-[10px] sm:gap-[14px] w-full">
+            <ScallopedFlowerButton
+              fillColor="#00D890"
+              textColor="#0149E7"
+              width="clamp(145px, 44vw, 165px)"
+              height="clamp(145px, 44vw, 165px)"
+              pathD={SHAPE_PATHS.greenTop.d}
+              viewBox={SHAPE_PATHS.greenTop.viewBox}
+              shadowColor="#FF0052"
+            >
+              <span>
+                COME TO
+                <br />
+                LEARN
+              </span>
+            </ScallopedFlowerButton>
+
+            <ScallopedFlowerButton
+              fillColor="#0149E7"
+              textColor="#FFD200"
+              width="clamp(145px, 44vw, 165px)"
+              height="clamp(145px, 44vw, 165px)"
+              pathD={SHAPE_PATHS.blueTop.d}
+              viewBox={SHAPE_PATHS.blueTop.viewBox}
+              shadowColor="#FF0052"
+            >
+              <span>
+                COME TO
+                <br />
+                CREATE
+              </span>
+            </ScallopedFlowerButton>
+          </div>
+
+          {/* Row 2: White & Yellow Buttons */}
+          <div className="flex items-center justify-center -space-x-4 sm:-space-x-2 w-full px-1 -mt-[14px] sm:-mt-[16px]">
+            <ScallopedFlowerButton
+              fillColor="#FFFFFF"
+              textColor="#0149E7"
+              width="clamp(165px, 48vw, 192px)"
+              height="clamp(165px, 48vw, 192px)"
+              pathD={SHAPE_PATHS.whiteMid.d}
+              viewBox={SHAPE_PATHS.whiteMid.viewBox}
+              shadowColor="#FF0052"
+              className="z-10"
+            >
+              <span>
+                COME TO
+                <br />
+                MEET
+                <br />
+                PEOPLE
+              </span>
+            </ScallopedFlowerButton>
+
+            <ScallopedFlowerButton
+              fillColor="#FFD200"
+              textColor="#FF0052"
+              width="clamp(165px, 48vw, 192px)"
+              height="clamp(165px, 48vw, 192px)"
+              pathD={SHAPE_PATHS.yellowMid.d}
+              viewBox={SHAPE_PATHS.yellowMid.viewBox}
+              shadowColor="#0054D9"
+              className="z-20"
+            >
+              <span>
+                COME TO
+                <br />
+                MEET
+                <br />
+                PEOPLE
+              </span>
+            </ScallopedFlowerButton>
+          </div>
+
+          {/* Row 3: Blue Large Centered Button */}
+          <div className="flex items-center justify-center w-full -mt-[18px] sm:-mt-[20px]">
+            <ScallopedFlowerButton
+              fillColor="#0054D9"
+              textColor="#FFFFFF"
+              width="clamp(195px, 60vw, 235px)"
+              height="clamp(195px, 60vw, 235px)"
+              pathD={SHAPE_PATHS.blueBottom.d}
+              viewBox={SHAPE_PATHS.blueBottom.viewBox}
+              shadowColor="#FF0052"
+            >
+              <span>
+                COME TO
+                <br />
+                DISCOVER
+                <br />
+                WHAT&apos;S
+                <br />
+                NEXT.
+              </span>
+            </ScallopedFlowerButton>
+          </div>
+        </div>
+
+        {/* Desktop: 5 Scalloped Flower Buttons Layout */}
+        <div className="hidden md:flex relative z-10 flex-col items-center gap-10 lg:gap-14 w-full max-w-6xl">
+          {/* Top Row: 3 Buttons */}
+          <div className="flex items-center justify-center gap-8 lg:gap-14 w-full flex-wrap">
+            <div className="transition-transform hover:scale-110">
+              <ScallopedFlowerButton
+                fillColor="#00D890"
+                textColor="#0149E7"
+                width="220px"
+                height="220px"
+                pathD={SHAPE_PATHS.greenTop.d}
+                viewBox={SHAPE_PATHS.greenTop.viewBox}
+                shadowColor="#FF0052"
+              >
+                <span className="text-[32px] leading-[110%]">
+                  COME TO
+                  <br />
+                  LEARN
+                </span>
+              </ScallopedFlowerButton>
+            </div>
+
+            <div className="transition-transform hover:scale-110">
+              <ScallopedFlowerButton
+                fillColor="#0149E7"
+                textColor="#FFD200"
+                width="220px"
+                height="220px"
+                pathD={SHAPE_PATHS.blueTop.d}
+                viewBox={SHAPE_PATHS.blueTop.viewBox}
+                shadowColor="#FF0052"
+              >
+                <span className="text-[32px] leading-[110%]">
+                  COME TO
+                  <br />
+                  CREATE
+                </span>
+              </ScallopedFlowerButton>
+            </div>
+
+            <div className="transition-transform hover:scale-110">
+              <ScallopedFlowerButton
+                fillColor="#FFFFFF"
+                textColor="#0149E7"
+                width="230px"
+                height="230px"
+                pathD={SHAPE_PATHS.whiteMid.d}
+                viewBox={SHAPE_PATHS.whiteMid.viewBox}
+                shadowColor="#FF0052"
+              >
+                <span className="text-[30px] leading-[105%]">
+                  COME TO
+                  <br />
+                  MEET
+                  <br />
+                  PEOPLE
+                </span>
+              </ScallopedFlowerButton>
+            </div>
+          </div>
+
+          {/* Bottom Row: 2 Buttons */}
+          <div className="flex items-center justify-center gap-10 lg:gap-16 w-full flex-wrap">
+            <div className="transition-transform hover:scale-110">
+              <ScallopedFlowerButton
+                fillColor="#FFD200"
+                textColor="#FF0052"
+                width="240px"
+                height="240px"
+                pathD={SHAPE_PATHS.yellowMid.d}
+                viewBox={SHAPE_PATHS.yellowMid.viewBox}
+                shadowColor="#0054D9"
+              >
+                <span className="text-[32px] leading-[105%]">
+                  COME TO
+                  <br />
+                  MEET
+                  <br />
+                  PEOPLE
+                </span>
+              </ScallopedFlowerButton>
+            </div>
+
+            <div className="transition-transform hover:scale-110">
+              <ScallopedFlowerButton
+                fillColor="#0054D9"
+                textColor="#FFFFFF"
+                width="270px"
+                height="270px"
+                pathD={SHAPE_PATHS.blueBottom.d}
+                viewBox={SHAPE_PATHS.blueBottom.viewBox}
+                shadowColor="#FF0052"
+              >
+                <span className="text-[34px] leading-[105%]">
+                  COME TO
+                  <br />
+                  DISCOVER
+                  <br />
+                  WHAT&apos;S
+                  <br />
+                  NEXT.
+                </span>
+              </ScallopedFlowerButton>
+            </div>
+          </div>
         </div>
       </div>
     </section>

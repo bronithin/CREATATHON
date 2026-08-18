@@ -3,33 +3,43 @@ import Image from "next/image";
 
 export default function BelongSection() {
   return (
-    <section className="relative w-[402px] bg-[#FFD200] text-[#18181B] pt-[36px] pb-[48px] px-[24px] overflow-hidden select-none">
-      {/* Right Subtitle: THIS IS WHERE YOU BELONG. */}
-      <div className="relative z-20 flex justify-end pr-1 mb-[18px]">
-        <h3
-          className="text-[#FF0052] uppercase text-right"
-          style={{
-            fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
-            fontWeight: 700,
-            fontSize: "32px",
-            lineHeight: "120%",
-            letterSpacing: "-1px",
-            textAlign: "right",
-            verticalAlign: "middle",
-            textTransform: "uppercase",
-          }}
+    <section className="relative w-full max-w-[402px] md:max-w-none bg-[#FFD200] text-[#18181B] pt-[36px] pb-[48px] md:pt-10 md:pb-[90px] lg:pb-[110px] px-[24px] md:px-12 lg:px-16 overflow-hidden select-none mx-auto">
+      <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row md:items-end md:justify-between relative z-20">
+        {/* Desktop Left Flower Blob */}
+        <div
+          className="hidden md:block w-[180px] h-[140px] lg:w-[240px] lg:h-[185px] z-5 pointer-events-none mb-[-20px]"
+          style={{ filter: "drop-shadow(6px 6px 0px #FFFFFF)" }}
         >
-          THIS IS
-          <br />
-          WHERE YOU
-          <br />
-          BELONG.
-        </h3>
+          <Image
+            src="/elements/flower-green-bottom.svg"
+            alt="Green Flower Blob"
+            width={240}
+            height={185}
+            style={{ width: "auto", height: "auto" }}
+            className="w-full h-full object-contain block"
+          />
+        </div>
+
+        {/* Right Subtitle: THIS IS WHERE YOU BELONG. */}
+        <div className="relative z-20 flex justify-end pr-1 md:pr-0 mb-[18px] md:mb-0">
+          <h3
+            className="text-[#FF0052] uppercase text-right text-[32px] md:text-[54px] lg:text-[66px] leading-[120%] md:leading-[108%] tracking-[-1px] font-bold"
+            style={{
+              fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+            }}
+          >
+            THIS IS
+            <br />
+            WHERE YOU
+            <br />
+            BELONG.
+          </h3>
+        </div>
       </div>
 
-      {/* Bottom Left Green Scalloped Flower emerging from behind the pink wave */}
+      {/* Mobile Bottom Left Green Scalloped Flower */}
       <div
-        className="absolute bottom-[4px] -left-[14px] w-[155px] h-[120px] z-5 pointer-events-none"
+        className="block md:hidden absolute bottom-[4px] -left-[14px] w-[155px] h-[120px] z-5 pointer-events-none"
         style={{ filter: "drop-shadow(4px 4px 0px #FFFFFF)" }}
       >
         <Image
@@ -43,7 +53,7 @@ export default function BelongSection() {
       </div>
 
       {/* Bottom Pink Wave Transition into What Happens section */}
-      <div className="absolute -bottom-[1px] left-0 right-0 w-[402px] h-[57px] pointer-events-none z-10">
+      <div className="absolute -bottom-[1px] left-0 right-0 w-full h-[57px] md:h-[80px] lg:h-[100px] pointer-events-none z-10">
         <svg
           viewBox="0 0 402 57"
           className="w-full h-full block"

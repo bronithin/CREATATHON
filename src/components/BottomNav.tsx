@@ -68,9 +68,9 @@ export default function BottomNav() {
 
   return (
     <>
-      {/* Fixed Bottom Dock Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pointer-events-none select-none">
-        <nav className="pointer-events-auto w-[402px] h-[78px] bg-white border-t-[2px] border-black flex items-center justify-around px-2 shadow-2xl">
+      {/* Fixed Bottom Dock Navigation (Mobile Only) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex justify-center pointer-events-none select-none">
+        <nav className="pointer-events-auto w-full max-w-[402px] h-[78px] bg-white border-t-[2px] border-black flex items-center justify-around px-2 shadow-2xl">
           {/* Tab 1: EXPLORE */}
           <button
             type="button"

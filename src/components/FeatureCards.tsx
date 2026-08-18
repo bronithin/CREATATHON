@@ -72,61 +72,109 @@ export default function FeatureCards() {
   ];
 
   return (
-    <section className="w-[402px] bg-[#FDF9EB] pt-[34px] pb-[44px] flex flex-col gap-[36px] items-center select-none overflow-hidden render-deferred">
-      {cards.map((card, idx) => (
-        <div
-          key={idx}
-          className="border-2 border-black p-[20px] shadow-box-card flex flex-col justify-between"
-          style={{
-            width: card.width,
-            minHeight: card.height,
-            backgroundColor: card.bg,
-            transform: card.rotation,
-          }}
-        >
-          {/* Card Header Title */}
-          <h3
-            className="uppercase mb-[16px]"
-            style={{
-              color: card.titleColor,
-              fontFamily: "var(--font-anton), Anton, sans-serif",
-              fontWeight: 400,
-              fontStyle: "normal",
-              fontSize: "40px",
-              lineHeight: "110%",
-              letterSpacing: "0px",
-              verticalAlign: "middle",
-              textTransform: "uppercase",
-            }}
-          >
-            {card.title}
-          </h3>
-
-          {/* Inset White/Cream Content Card Box */}
+    <section
+      id="highlights"
+      className="w-full max-w-[402px] md:max-w-none bg-[#FDF9EB] pt-[34px] pb-[44px] md:py-20 lg:py-28 px-4 md:px-10 lg:px-16 flex flex-col items-center select-none overflow-hidden mx-auto"
+    >
+      {/* Mobile Vertical Stack */}
+      <div className="flex md:hidden flex-col gap-[36px] items-center w-full">
+        {cards.map((card, idx) => (
           <div
-            className="border-2 border-black/15 p-[16px] flex items-center"
+            key={idx}
+            className="w-full max-w-[354px] border-2 border-black p-[20px] shadow-box-card flex flex-col justify-between"
             style={{
-              backgroundColor: card.innerBg,
-              minHeight: card.innerBoxHeight,
+              minHeight: card.height,
+              backgroundColor: card.bg,
+              transform: card.rotation,
             }}
           >
-            <p
+            {/* Card Header Title */}
+            <h3
+              className="uppercase mb-[16px]"
               style={{
-                fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+                color: card.titleColor,
+                fontFamily: "var(--font-anton), Anton, sans-serif",
                 fontWeight: 400,
                 fontStyle: "normal",
-                fontSize: "21px",
-                lineHeight: "124%",
-                letterSpacing: "-1px",
+                fontSize: "40px",
+                lineHeight: "110%",
+                letterSpacing: "0px",
                 verticalAlign: "middle",
-                color: "#18181B",
+                textTransform: "uppercase",
               }}
             >
-              {card.body}
-            </p>
+              {card.title}
+            </h3>
+
+            {/* Inset White/Cream Content Card Box */}
+            <div
+              className="border-2 border-black/15 p-[16px] flex items-center"
+              style={{
+                backgroundColor: card.innerBg,
+                minHeight: card.innerBoxHeight,
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+                  fontWeight: 400,
+                  fontStyle: "normal",
+                  fontSize: "21px",
+                  lineHeight: "124%",
+                  letterSpacing: "-1px",
+                  verticalAlign: "middle",
+                  color: "#18181B",
+                }}
+              >
+                {card.body}
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      {/* Desktop Multi-Column Grid */}
+      <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 w-full max-w-7xl mx-auto">
+        {cards.map((card, idx) => (
+          <div
+            key={idx}
+            className="border-[3px] border-black p-6 lg:p-7 shadow-[6px_6px_0px_#000000] hover:shadow-[8px_8px_0px_#000000] hover:-translate-y-1 transition-all flex flex-col justify-between rounded-none cursor-pointer"
+            style={{
+              backgroundColor: card.bg,
+              minHeight: "360px",
+              transform: idx === 1 ? "rotate(-1.5deg)" : idx === 3 ? "rotate(1.5deg)" : "rotate(0deg)",
+            }}
+          >
+            {/* Card Header Title */}
+            <h3
+              className="uppercase mb-5 font-anton text-[32px] lg:text-[38px] leading-[108%] tracking-normal"
+              style={{
+                color: card.titleColor,
+              }}
+            >
+              {card.title}
+            </h3>
+
+            {/* Inset White/Cream Content Card Box */}
+            <div
+              className="border-2 border-black/20 p-5 rounded-none flex items-center mt-auto shadow-inner"
+              style={{
+                backgroundColor: card.innerBg,
+                minHeight: "130px",
+              }}
+            >
+              <p
+                className="text-[18px] lg:text-[20px] leading-[128%] tracking-tight text-[#18181B] font-medium"
+                style={{
+                  fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+                }}
+              >
+                {card.body}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

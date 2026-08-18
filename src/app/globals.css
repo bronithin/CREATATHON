@@ -101,8 +101,8 @@
   will-change: transform;
 }
 
-/* Defer rendering off-screen DOM trees to speed up initial FCP/LCP */
+/* Ensure clean rendering across all viewports */
 .render-deferred {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
+  content-visibility: visible;
 }
+
