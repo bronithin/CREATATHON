@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 interface CardData {
   bg: string;
@@ -76,6 +77,31 @@ export default function FeatureCards() {
       id="highlights"
       className="w-full max-w-[402px] md:max-w-none bg-[#FDF9EB] pt-[34px] pb-[44px] md:py-20 lg:py-28 px-4 md:px-10 lg:px-16 flex flex-col items-center select-none overflow-hidden mx-auto"
     >
+      {/* Registration CTA Pill Buttons */}
+      <div className="w-full max-w-[354px] flex flex-col gap-4 mb-9 select-none">
+        {/* Button 1: REGISTER AS INFLUENCER */}
+        <Link
+          href="/register"
+          className="w-full h-[57px] bg-[#FFD200] border-[2px] border-[#FF0052] rounded-full shadow-[0px_5px_0px_#FF0052] flex items-center justify-center cursor-pointer transition-transform hover:-translate-y-0.5 active:translate-y-1 active:shadow-[0px_1px_0px_#FF0052]"
+          aria-label="Register as Influencer"
+        >
+          <span className="font-anton text-[23px] sm:text-[24px] text-[#FF0052] uppercase tracking-wide leading-none pt-0.5">
+            REGISTER AS INFLUENCER
+          </span>
+        </Link>
+
+        {/* Button 2: REGISTER AS BRAND */}
+        <Link
+          href="/register"
+          className="w-full h-[57px] bg-[#00D890] border-[2px] border-[#0054D9] rounded-full shadow-[0px_5px_0px_#0054D9] flex items-center justify-center cursor-pointer transition-transform hover:-translate-y-0.5 active:translate-y-1 active:shadow-[0px_1px_0px_#0054D9]"
+          aria-label="Register as Brand"
+        >
+          <span className="font-anton text-[23px] sm:text-[24px] text-[#0054D9] uppercase tracking-wide leading-none pt-0.5">
+            REGISTER AS BRAND
+          </span>
+        </Link>
+      </div>
+
       {/* Mobile Vertical Stack */}
       <div className="flex md:hidden flex-col gap-[36px] items-center w-full">
         {cards.map((card, idx) => (
