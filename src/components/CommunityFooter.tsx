@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CommunityFooter() {
   return (
@@ -66,6 +67,17 @@ export default function CommunityFooter() {
               Creatathon is built around the people who make the creator ecosystem what it is.
             </p>
           </div>
+        </div>
+
+        {/* Legal Footer Bar */}
+        <div className="relative z-10 mt-10 md:mt-16 pt-6 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 font-jetbrains text-xs">
+          <Link href="/terms" className="hover:text-[#FFD200] font-bold text-white/90 transition-colors underline underline-offset-4 uppercase">
+            Terms & Conditions
+          </Link>
+
+          <p className="text-white/60 text-center sm:text-right font-medium">
+            © 2026 Creatathon. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

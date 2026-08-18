@@ -13,6 +13,7 @@ export default function Loading() {
             alt="Creatathon"
             width={380}
             height={130}
+            style={{ width: "auto", height: "auto" }}
             className="w-auto h-auto max-w-full max-h-full object-contain block drop-shadow-[0_8px_24px_rgba(255,0,82,0.35)]"
             priority
           />

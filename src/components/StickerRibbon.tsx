@@ -27,6 +27,7 @@ export default function StickerRibbon() {
               alt="Creatathon Stickers Strip"
               width={600}
               height={70}
+              style={{ width: "auto", height: "auto" }}
               className="w-auto h-[60px] lg:h-[68px] object-contain block shrink-0"
             />
           ))}
@@ -39,6 +40,7 @@ export default function StickerRibbon() {
               alt="Creatathon Stickers Strip"
               width={600}
               height={70}
+              style={{ width: "auto", height: "auto" }}
               className="w-auto h-[60px] lg:h-[68px] object-contain block shrink-0"
             />
           ))}

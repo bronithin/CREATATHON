@@ -98,6 +98,7 @@ export default function MoreThanFestival() {
               alt="Creators Working Together in Studio Arch"
               width={390}
               height={260}
+              style={{ width: "auto", height: "auto" }}
               className="w-full h-full object-contain block"
               priority
             />
@@ -171,6 +172,7 @@ export default function MoreThanFestival() {
                 alt="Creators Working Together in Studio Arch"
                 width={620}
                 height={414}
+                style={{ width: "auto", height: "auto" }}
                 className="w-full h-auto object-contain block drop-shadow-xl"
                 priority
               />
