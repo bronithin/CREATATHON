@@ -4,20 +4,14 @@ import React, { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import TopBanner from "@/components/TopBanner";
+import SiteFooter from "@/components/SiteFooter";
 import {
   ArrowLeft,
   Search,
-  Printer,
   ChevronRight,
-  Shield,
-  FileText,
-  HelpCircle,
-  Mail,
   CheckCircle2,
   AlertCircle,
-  ExternalLink,
   ArrowUp,
-  Scale,
 } from "lucide-react";
 
 interface Section {
@@ -30,18 +24,12 @@ interface Section {
   content: React.ReactNode;
 }
 
-export default function TermsPage() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [activeSection, setActiveSection] = useState("section-1");
-  const [copiedSection, setCopiedSection] = useState<string | null>(null);
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
-  const sections: Section[] = [
-    {
-      id: "section-1",
-      num: 1,
-      title: "About Creatathon",
-      tag: "OVERVIEW",
+const SECTIONS: Section[] = [
+  {
+    id: "section-1",
+    num: 1,
+    title: "About Creatathon",
+    tag: "OVERVIEW",
       accentColor: "#0054D9",
       badgeBg: "#FFD200",
       content: (
@@ -739,11 +727,17 @@ export default function TermsPage() {
     },
   ];
 
+export default function TermsPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeSection, setActiveSection] = useState("section-1");
+  const [copiedSection, setCopiedSection] = useState<string | null>(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 400);
 
-      const sectionElements = sections.map((s) => ({
+      const sectionElements = SECTIONS.map((s) => ({
         id: s.id,
         el: document.getElementById(s.id),
       }));
@@ -760,7 +754,7 @@ export default function TermsPage() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [sections]);
+  }, []);
 
   const handleCopyLink = (id: string) => {
     if (typeof window !== "undefined") {
@@ -772,21 +766,15 @@ export default function TermsPage() {
   };
 
   const filteredSections = useMemo(() => {
-    if (!searchQuery.trim()) return sections;
+    if (!searchQuery.trim()) return SECTIONS;
     const q = searchQuery.toLowerCase();
-    return sections.filter(
+    return SECTIONS.filter(
       (s) =>
         s.title.toLowerCase().includes(q) ||
         s.tag.toLowerCase().includes(q) ||
         s.num.toString().includes(q)
     );
-  }, [searchQuery, sections]);
-
-  const handlePrint = () => {
-    if (typeof window !== "undefined") {
-      window.print();
-    }
-  };
+  }, [searchQuery]);
 
   const scrollToTop = () => {
     if (typeof window !== "undefined") {
@@ -1062,42 +1050,8 @@ export default function TermsPage() {
         </button>
       )}
 
-      {/* Branded Footer */}
-      <footer className="w-full bg-[#121214] text-white border-t-[3px] border-black py-10 px-4 sm:px-6 lg:px-12 mt-12 select-none">
-        <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col items-center md:items-start gap-2">
-            <Link href="/" className="w-[150px] h-[42px] relative block">
-              <Image
-                src="/elements/creatathon-logo.svg"
-                alt="Creatathon Logo"
-                width={150}
-                height={42}
-                style={{ width: "100%", height: "100%" }}
-                className="object-contain brightness-0 invert"
-              />
-            </Link>
-            <p className="text-xs text-white/60 font-jetbrains">
-              Kerala&apos;s Biggest Creator Festival • Kochi 2026
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-6 font-jetbrains text-xs font-bold text-white/80">
-            <Link href="/" className="hover:text-[#FFD200] transition-colors uppercase">
-              Home
-            </Link>
-            <Link href="/terms" className="text-[#FFD200] underline underline-offset-4 uppercase">
-              Terms & Conditions
-            </Link>
-            <a href="mailto:contact@creatathon.in" className="hover:text-[#FFD200] transition-colors uppercase">
-              Contact
-            </a>
-          </div>
-
-          <p className="text-xs text-white/50 font-jetbrains text-center md:text-right">
-            © 2026 Creatathon. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      {/* Branded Blue Legal Footer */}
+      <SiteFooter />
     </div>
   );
 }

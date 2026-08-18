@@ -70,13 +70,15 @@ export default function CommunityFooter() {
         </div>
 
         {/* Legal Footer Bar */}
-        <div className="relative z-10 mt-10 md:mt-16 pt-6 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 font-jetbrains text-xs">
-          <Link href="/terms" className="hover:text-[#FFD200] font-bold text-white/90 transition-colors underline underline-offset-4 uppercase">
-            Terms & Conditions
+        <div className="relative z-10 mt-10 md:mt-16 pt-8 border-t border-white/20 flex flex-col items-center justify-center gap-3 text-center font-jetbrains">
+          <Link
+            href="/terms"
+            className="text-[13px] sm:text-[14px] font-bold text-white uppercase underline underline-offset-4 tracking-wider hover:text-[#FFD200] transition-colors cursor-pointer"
+          >
+            TERMS &amp; CONDITIONS
           </Link>
-
-          <p className="text-white/60 text-center sm:text-right font-medium">
-            © 2026 Creatathon. All rights reserved.
+          <p className="text-[12px] sm:text-[13px] font-normal text-white/80 tracking-wide text-center m-0">
+            &copy; 2026 Creatathon. All rights reserved.
           </p>
         </div>
       </div>

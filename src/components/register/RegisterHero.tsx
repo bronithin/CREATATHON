@@ -21,7 +21,7 @@ export default function RegisterHero({ onSelectTab }: RegisterHeroProps) {
   return (
     <section className="w-full bg-[#FDF9EB] pt-9 pb-12 px-6 relative overflow-hidden flex flex-col items-center">
       {/* Decorative Top-Right Pink Flower */}
-      <div className="absolute top-3 -right-2 pointer-events-none select-none z-0">
+      <div className="absolute top-3 right-3 sm:right-4 pointer-events-none select-none z-0">
         <HeroPinkFlower className="w-[142px] h-[142px]" />
       </div>
 
@@ -44,7 +44,18 @@ export default function RegisterHero({ onSelectTab }: RegisterHeroProps) {
         </div>
 
         {/* Introduction Paragraph */}
-        <p className="mt-5 text-[15.5px] leading-[1.38] text-[#18181B] font-normal tracking-[-0.01em] max-w-[340px]">
+        <p
+          className="mt-5 text-[#18181B] max-w-[340px]"
+          style={{
+            fontFamily: "Halenoir, var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif",
+            fontWeight: 400,
+            fontStyle: "normal",
+            fontSize: "19px",
+            lineHeight: "120%",
+            letterSpacing: "-1px",
+            verticalAlign: "middle",
+          }}
+        >
           Creatathon brings brands, creators, and communities into one room. Register as a brand or influencer and be where the creator economy is happening.
         </p>
 

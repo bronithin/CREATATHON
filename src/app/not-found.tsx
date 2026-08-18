@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import TopBanner from "@/components/TopBanner";
-import BottomNav from "@/components/BottomNav";
+import SiteFooter from "@/components/SiteFooter";
 
 export const metadata = {
   title: "404 - Page Not Found | Creatathon 2026",
@@ -12,7 +12,7 @@ export const metadata = {
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#FDF9EB] text-[#18181B] flex flex-col items-center select-none overflow-x-hidden">
-      <main className="w-[402px] max-w-[402px] min-h-screen bg-[#FDF9EB] shadow-2xl border-x border-black/15 relative flex flex-col mx-auto overflow-x-hidden pb-[96px]">
+      <main className="w-[402px] max-w-[402px] min-h-screen bg-[#FDF9EB] shadow-2xl border-x border-black/15 relative flex flex-col mx-auto overflow-x-hidden">
         {/* 1. Header with Red Announcement & Yellow Logo */}
         <TopBanner />
 
@@ -110,8 +110,8 @@ export default function NotFound() {
           </div>
         </div>
 
-        {/* 3. Fixed Bottom Dock Navigation */}
-        <BottomNav />
+        {/* Blue Legal Footer */}
+        <SiteFooter />
       </main>
     </div>
   );

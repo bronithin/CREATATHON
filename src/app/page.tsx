@@ -12,7 +12,6 @@ import EcosystemSection from "@/components/EcosystemSection";
 import WhatHappensSection from "@/components/WhatHappensSection";
 import FeatureCards from "@/components/FeatureCards";
 import CommunityFooter from "@/components/CommunityFooter";
-import BottomNav from "@/components/BottomNav";
 
 export default function Home() {
   return (
@@ -56,9 +55,6 @@ export default function Home() {
 
       {/* 11. Blue Community Footer */}
       <CommunityFooter />
-
-      {/* 12. Fixed Bottom Dock Navigation */}
-      <BottomNav />
     </main>
     </>
   );

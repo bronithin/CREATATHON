@@ -90,13 +90,25 @@ export default function RegisterFormSection({
       >
         <div className="w-full max-w-[343px] flex flex-col items-center">
           {/* Small Top Yellow Label */}
-          <span className="font-jetbrains text-[12px] font-bold text-[#FFD200] tracking-wider uppercase text-center mb-3">
+          <span
+            className="text-[#FFD200] uppercase text-center mb-3 font-bold block"
+            style={{
+              fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+              fontWeight: 700,
+              fontStyle: "normal",
+              fontSize: "16px",
+              lineHeight: "24px",
+              letterSpacing: "0px",
+              textAlign: "center",
+              verticalAlign: "middle",
+            }}
+          >
             JOIN CREATATHON 2026
           </span>
 
           {/* Large Pink Banner Button */}
-          <div className="bg-[#FB0146] px-8 py-2.5 flex items-center justify-center mb-6 shadow-sm">
-            <span className="font-anton text-[28px] sm:text-[30px] leading-none text-white tracking-tight uppercase">
+          <div className="w-[222px] h-[56px] px-[16px] py-[8px] bg-[#FF0052] flex items-center justify-center mb-6">
+            <span className="font-anton text-[32px] sm:text-[34px] leading-none text-white tracking-tight uppercase">
               REGISTER NOW
             </span>
           </div>
@@ -107,11 +119,20 @@ export default function RegisterFormSection({
             <button
               type="button"
               onClick={() => handleTabSelect("influencer")}
-              className={`flex-1 py-3.5 px-2 text-center font-jetbrains text-[11px] sm:text-[12px] font-bold uppercase transition-colors cursor-pointer ${
+              className={`flex-1 py-3 px-2 text-center font-bold uppercase transition-colors cursor-pointer ${
                 tab === "influencer"
                   ? "bg-[#FFD300] text-black"
                   : "bg-[#FDF9EB] text-black/60 hover:text-black"
               }`}
+              style={{
+                fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+                fontWeight: 700,
+                fontStyle: "normal",
+                fontSize: "14px",
+                lineHeight: "21px",
+                letterSpacing: "0px",
+                verticalAlign: "middle",
+              }}
               aria-selected={tab === "influencer"}
               role="tab"
             >
@@ -122,11 +143,20 @@ export default function RegisterFormSection({
             <button
               type="button"
               onClick={() => handleTabSelect("brand")}
-              className={`flex-1 py-3.5 px-2 text-center font-jetbrains text-[11px] sm:text-[12px] font-bold uppercase transition-colors cursor-pointer ${
+              className={`flex-1 py-3 px-2 text-center font-bold uppercase transition-colors cursor-pointer ${
                 tab === "brand"
                   ? "bg-[#FFD300] text-black"
                   : "bg-[#FDF9EB] text-black/60 hover:text-black"
               }`}
+              style={{
+                fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+                fontWeight: 700,
+                fontStyle: "normal",
+                fontSize: "14px",
+                lineHeight: "21px",
+                letterSpacing: "0px",
+                verticalAlign: "middle",
+              }}
               aria-selected={tab === "brand"}
               role="tab"
             >
@@ -142,7 +172,19 @@ export default function RegisterFormSection({
           >
             {/* Field 1: Name / Handle */}
             <div className="flex flex-col gap-1.5 text-left">
-              <label htmlFor="reg-name" className="font-bold text-[13.5px] text-[#18181B]">
+              <label
+                htmlFor="reg-name"
+                className="text-[#18181B] font-bold"
+                style={{
+                  fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+                  fontWeight: 700,
+                  fontStyle: "normal",
+                  fontSize: "14px",
+                  lineHeight: "21px",
+                  letterSpacing: "0px",
+                  verticalAlign: "middle",
+                }}
+              >
                 {tab === "influencer" ? "Name / Handle" : "Brand / Company Name"}
               </label>
               <input
@@ -167,7 +209,19 @@ export default function RegisterFormSection({
 
             {/* Field 2: Location */}
             <div className="flex flex-col gap-1.5 text-left">
-              <label htmlFor="reg-location" className="font-bold text-[13.5px] text-[#18181B]">
+              <label
+                htmlFor="reg-location"
+                className="text-[#18181B] font-bold"
+                style={{
+                  fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+                  fontWeight: 700,
+                  fontStyle: "normal",
+                  fontSize: "14px",
+                  lineHeight: "21px",
+                  letterSpacing: "0px",
+                  verticalAlign: "middle",
+                }}
+              >
                 Location
               </label>
               <input
@@ -192,7 +246,19 @@ export default function RegisterFormSection({
 
             {/* Field 3: Primary Social Link */}
             <div className="flex flex-col gap-1.5 text-left">
-              <label htmlFor="reg-social" className="font-bold text-[13.5px] text-[#18181B]">
+              <label
+                htmlFor="reg-social"
+                className="text-[#18181B] font-bold"
+                style={{
+                  fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+                  fontWeight: 700,
+                  fontStyle: "normal",
+                  fontSize: "14px",
+                  lineHeight: "21px",
+                  letterSpacing: "0px",
+                  verticalAlign: "middle",
+                }}
+              >
                 {tab === "influencer" ? "Primary Social Link" : "Website / Social Link"}
               </label>
               <input
@@ -217,7 +283,19 @@ export default function RegisterFormSection({
 
             {/* Field 4: Follower Count */}
             <div className="flex flex-col gap-1.5 text-left">
-              <label htmlFor="reg-followers" className="font-bold text-[13.5px] text-[#18181B]">
+              <label
+                htmlFor="reg-followers"
+                className="text-[#18181B] font-bold"
+                style={{
+                  fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+                  fontWeight: 700,
+                  fontStyle: "normal",
+                  fontSize: "14px",
+                  lineHeight: "21px",
+                  letterSpacing: "0px",
+                  verticalAlign: "middle",
+                }}
+              >
                 {tab === "influencer" ? "Follower Count" : "Target Audience Size"}
               </label>
               <div className="relative">
@@ -257,7 +335,21 @@ export default function RegisterFormSection({
               className="w-full h-[55px] bg-[#FFD300] border-[2px] border-[#FF0052] rounded-full shadow-[0px_5px_0px_#FF0052] flex items-center justify-center mt-2 cursor-pointer transition-transform hover:-translate-y-0.5 active:translate-y-1 active:shadow-[0px_1px_0px_#FF0052] disabled:opacity-70 disabled:cursor-not-allowed"
               aria-label="Submit details"
             >
-              <span className="font-anton text-[22px] sm:text-[24px] text-[#FF0052] uppercase tracking-wide leading-none pt-0.5">
+              <span
+                className="font-anton uppercase tracking-[0px]"
+                style={{
+                  color: "#FF0052",
+                  fontFamily: "var(--font-anton), Anton, sans-serif",
+                  fontWeight: 400,
+                  fontStyle: "normal",
+                  fontSize: "28px",
+                  lineHeight: "21px",
+                  letterSpacing: "0px",
+                  textAlign: "center",
+                  verticalAlign: "middle",
+                  textTransform: "uppercase",
+                }}
+              >
                 {isSubmitting ? "SUBMITTING..." : "SUBMIT DETAILS"}
               </span>
             </button>

@@ -1,15 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import RegisterTopBar from "@/components/register/RegisterTopBar";
-import RegisterHeader from "@/components/register/RegisterHeader";
+import TopBanner from "@/components/TopBanner";
 import RegisterHero from "@/components/register/RegisterHero";
 import RegisterReachSection from "@/components/register/RegisterReachSection";
 import RegisterCreatorCard from "@/components/register/RegisterCreatorCard";
 import RegisterBrandCard from "@/components/register/RegisterBrandCard";
 import RegisterFormSection from "@/components/register/RegisterFormSection";
 import RegisterQuoteSection from "@/components/register/RegisterQuoteSection";
-import BottomNav from "@/components/BottomNav";
+import SiteFooter from "@/components/SiteFooter";
 
 export default function RegisterPage() {
   const [selectedTab, setSelectedTab] = useState<"influencer" | "brand">("influencer");
@@ -21,14 +20,11 @@ export default function RegisterPage() {
   return (
     <div className="w-full min-h-screen bg-[#FDF9EB] flex flex-col items-center">
       {/* Canonical Mobile Frame Container */}
-      <main className="w-full max-w-[402px] md:max-w-none min-h-screen bg-[#FDF9EB] shadow-2xl md:shadow-none border-x border-black/15 md:border-x-0 relative flex flex-col mx-auto overflow-x-hidden pb-[78px]">
-        {/* 1. Top Promotional Bar (Pink Ticker) */}
-        <RegisterTopBar />
+      <main className="w-full max-w-[402px] md:max-w-none min-h-screen bg-[#FDF9EB] shadow-2xl md:shadow-none border-x border-black/15 md:border-x-0 relative flex flex-col mx-auto overflow-x-hidden">
+        {/* 1. Header with Red/Pink Announcement & Yellow Logo */}
+        <TopBanner />
 
-        {/* 2. Yellow Brand Header Bar */}
-        <RegisterHeader />
-
-        {/* 3. Hero / Introduction Section ("BE PART OF THE STORY") */}
+        {/* 2. Hero / Introduction Section ("BE PART OF THE STORY") */}
         <RegisterHero onSelectTab={handleHeroSelectTab} />
 
         {/* 4. "WHERE BRAND MEET REAL REACH" Section with 4 Rotated Cards */}
@@ -52,8 +48,8 @@ export default function RegisterPage() {
         {/* 8. Bottom Quote / CTA Section (Pink with Tilted Quote Card & Shapes) */}
         <RegisterQuoteSection />
 
-        {/* 9. Mobile Bottom Navigation Dock */}
-        <BottomNav />
+        {/* 9. Blue Legal Footer */}
+        <SiteFooter />
       </main>
     </div>
   );

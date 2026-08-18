@@ -1,85 +1,138 @@
 import React from "react";
 
-// 1. Hero top-right 12-petaled Pink Flower / Asterisk
+// 1. Hero top-right 8-petaled Pink Asterisk / Star
 export function HeroPinkFlower({ className = "w-28 h-28" }: { className?: string }) {
   return (
     <svg
-      viewBox="249 125 140 140"
+      viewBox="-30 0 68 68"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-hidden="true"
     >
       <path
-        d="M334.774 156.299L357.236 133.837L379.545 156.146L356.466 179.225H389V210.774H357.45L379.141 232.465L356.831 254.773L334.774 232.716V265H303.226V232.465L280.55 255.141L258.241 232.832L280.299 210.774H249V179.225H281.283L257.837 155.778L280.146 133.47L303.226 156.55V125H334.774V156.299Z"
+        d="M11.6621 15.2012L22.5713 4.29199L33.4072 15.1279L22.1973 26.3379H38V41.6621H22.6758L33.2109 52.1973L22.375 63.0332L11.6621 52.3193V68H-3.66211V52.1973L-14.6758 63.2109L-25.5117 52.376L-14.7979 41.6621H-30V26.3379H-14.3193L-25.708 14.9492L-14.8721 4.11426L-3.66211 15.3242V0H11.6621V15.2012Z"
         fill="#FF0052"
       />
     </svg>
   );
 }
 
-// 2. Yellow Starburst on the left side of Quote section
-export function QuoteYellowStarburst({ className = "w-28 h-28" }: { className?: string }) {
+// 2. Yellow Starburst on the top-left side of Quote section (down-top-bottom.svg)
+export function QuoteYellowStarburst({ className = "w-[85px] h-[122px]" }: { className?: string }) {
   return (
     <svg
-      viewBox="-26 3111 111 122"
+      width="85"
+      height="122"
+      viewBox="0 0 85 122"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-hidden="true"
     >
       <path
-        d="M78.6436 3216.58L78.6141 3216.61C65.8126 3211.06 53.026 3205.53 40.2245 3200C40.5645 3211 40.9045 3221.99 41.2445 3233C34.9029 3222.87 28.5613 3212.74 22.2197 3202.61C14.459 3209.57 6.69836 3216.52 -1.07711 3223.46C2.10108 3212.76 5.27926 3202.05 8.47223 3191.34C-2.14143 3191.31 -12.7551 3191.28 -23.3835 3191.23C-13.8785 3184.15 -4.37355 3177.08 5.14622 3170.02C-5.23092 3161.13 -15.6229 3152.23 -26 3143.34C-11.2769 3147.34 3.43148 3151.33 18.1546 3155.34C14.7251 3140.56 11.2956 3125.79 7.86616 3111C17.8885 3125.94 27.9109 3140.87 37.9333 3155.79C45.8566 3148.27 53.7651 3140.74 61.6884 3133.21C59.5597 3144.33 57.4459 3155.45 55.3172 3166.57C65.2065 3171.55 75.1107 3176.51 85 3181.48C73.0264 3182.78 61.0527 3184.06 49.0939 3185.36C58.9389 3195.77 68.7986 3206.17 78.6436 3216.57V3216.58Z"
+        d="M78.6436 105.582L78.6141 105.612C65.8126 100.064 53.026 94.5311 40.2245 88.998C40.5645 100.004 40.9045 110.994 41.2445 122C34.9029 111.871 28.5613 101.742 22.2197 91.6134C14.459 98.5675 6.69836 105.522 -1.07711 112.461C2.10108 101.757 5.27926 91.054 8.47223 80.3356C-2.14143 80.3053 -12.7551 80.2751 -23.3835 80.2297C-13.8785 73.1546 -4.37355 66.0796 5.14622 59.0196C-5.23092 50.1304 -15.6229 41.226 -26 32.3368C-11.2769 36.343 3.43148 40.3341 18.1546 44.3403C14.7251 29.5551 11.2956 14.7851 7.86616 0C17.8885 14.9363 27.9109 29.8726 37.9333 44.7938C45.8566 37.2652 53.7651 29.7366 61.6884 22.2079C59.5597 33.3346 57.4459 44.4461 55.3172 55.5727C65.2065 60.5465 75.1107 65.5051 85 70.4788C73.0264 71.7789 61.0527 73.0639 49.0939 74.3641C58.9389 84.7651 68.7986 95.166 78.6436 105.567V105.582Z"
         fill="#F6D202"
       />
     </svg>
   );
 }
 
-// 3. Pink & Yellow 12-Point Star inside Quote Card
-export function QuoteCardPinkStar({ className = "w-12 h-12" }: { className?: string }) {
+// 3. Pink 8-Point Asterisk / Star inside Quote Card with Yellow Drop Shadow (down-bottom.svg)
+export function QuoteCardPinkStar({ className = "w-[54px] h-[53px]" }: { className?: string }) {
   return (
     <svg
-      viewBox="175 3268 60 60"
+      width="54"
+      height="53"
+      viewBox="0 0 54 53"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-hidden="true"
     >
-      {/* Yellow solid 3D shadow layer offset dx=4, dy=3 */}
-      <path
-        d="M212.772 3285.65L220.781 3277.64L228.736 3285.6L220.506 3293.83L232.108 3293.83L232.108 3305.08L220.857 3305.08L228.591 3312.81L220.636 3320.77L212.772 3312.9L212.772 3324.41L201.521 3324.41L201.521 3312.81L193.435 3320.9L185.48 3312.94L193.346 3305.08L182.185 3305.08L182.185 3293.83L193.696 3293.83L185.335 3285.47L193.29 3277.51L201.521 3285.74L201.521 3274.49L212.772 3274.49L212.772 3285.65Z"
-        fill="#FFD200"
-      />
-      {/* Pink foreground star */}
-      <path
-        d="M208.772 3282.65L216.781 3274.64L224.736 3282.6L216.506 3290.83L228.108 3290.83L228.108 3302.08L216.857 3302.08L224.591 3309.81L216.636 3317.77L208.772 3309.9L208.772 3321.41L197.521 3321.41L197.521 3309.81L189.435 3317.9L181.48 3309.94L189.346 3302.08L178.185 3302.08L178.185 3290.83L189.696 3290.83L181.335 3282.47L189.29 3274.51L197.521 3282.74L197.521 3271.49L208.772 3271.49L208.772 3282.65Z"
-        fill="#FF0052"
-      />
+      <g filter="url(#quote_card_pink_star_filter)">
+        <path
+          d="M30.5869 11.1602L38.5957 3.15137L46.5508 11.1064L38.3213 19.3359L49.9229 19.3359L49.9229 30.5869L38.6719 30.5869L46.4062 38.3213L38.4512 46.2764L30.5869 38.4121L30.5869 49.9229L19.3359 49.9229L19.3359 38.3213L11.25 46.4082L3.29492 38.4531L11.1611 30.5869L-7.37467e-08 30.5869L-4.662e-08 19.3359L11.5107 19.3359L3.15039 10.9756L11.1055 3.02051L19.3359 11.251L19.3359 4.662e-08L30.5869 7.37467e-08L30.5869 11.1602Z"
+          fill="#FF0052"
+        />
+      </g>
+      <defs>
+        <filter
+          id="quote_card_pink_star_filter"
+          x="0"
+          y="0"
+          width="53.9229"
+          height="52.9229"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="4" dy="3" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 0.823529 0 0 0 0 0 0 0 0 1 0"
+          />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+        </filter>
+      </defs>
     </svg>
   );
 }
 
-// 4. Green Organic Flower shape at bottom-right of Quote section
-export function QuoteGreenFlower({ className = "w-32 h-32" }: { className?: string }) {
+// 4. Green Organic Flower shape at bottom-right of Quote section with White Drop Shadow (down-right-botom.svg)
+export function QuoteGreenFlower({ className = "w-[72px] h-[137px]" }: { className?: string }) {
   return (
     <svg
-      viewBox="325 3425 145 145"
+      width="72"
+      height="137"
+      viewBox="0 0 72 137"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-hidden="true"
     >
-      {/* White solid 3D shadow layer offset dx=4, dy=4 */}
-      <path
-        d="M341.889 3440.81C353.902 3428.84 376.932 3431.09 400.692 3444.41C424.405 3431.31 447.316 3429.21 459.239 3441.18C471.187 3453.17 468.965 3476.14 455.709 3499.86C468.685 3523.48 470.731 3546.27 458.805 3558.16C446.874 3570.04 424.076 3567.91 400.489 3554.83C376.758 3567.95 353.824 3570.07 341.892 3558.09C329.984 3546.14 332.148 3523.28 345.286 3499.65C332.042 3475.83 329.872 3452.78 341.889 3440.81Z"
-        fill="#FFFFFF"
-      />
-      {/* Green foreground flower */}
-      <path
-        d="M337.889 3436.81C349.902 3424.84 372.932 3427.09 396.692 3440.41C420.405 3427.31 443.316 3429.21 455.239 3437.18C467.187 3449.17 464.965 3472.14 451.709 3495.86C464.685 3519.48 466.731 3542.27 454.805 3554.16C442.874 3566.04 420.076 3563.91 396.489 3550.83C372.758 3563.95 349.824 3566.07 337.892 3554.09C325.984 3542.14 328.148 3519.28 341.286 3499.65C328.042 3475.83 325.872 3448.78 337.889 3436.81Z"
-        fill="#00D890"
-      />
+      <g filter="url(#quote_green_flower_filter)">
+        <path
+          d="M7.8887 7.80954C19.9017 -4.15922 42.9323 -1.91023 66.6924 11.4082C90.4054 -1.68884 113.316 -3.78983 125.239 8.1777C137.187 20.1698 134.965 43.1397 121.709 66.8554C134.685 90.4811 136.731 113.275 124.805 125.157C112.874 137.044 90.0762 134.907 66.4893 121.831C42.7577 134.954 19.824 137.069 7.89163 125.093C-4.0161 113.141 -1.85193 90.2836 11.2862 66.6523C-1.95769 42.8339 -4.12846 19.7829 7.8887 7.80954Z"
+          fill="#00D890"
+        />
+      </g>
+      <defs>
+        <filter
+          id="quote_green_flower_filter"
+          x="0"
+          y="0"
+          width="137.048"
+          height="136.981"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="4" dy="4" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"
+          />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+        </filter>
+      </defs>
     </svg>
   );
 }
+
