@@ -41,9 +41,13 @@ console.log("-------------------------------------------------------");
 async function run() {
   try {
     const startTime = Date.now();
+    const testIp = `10.0.99.${Math.floor(Math.random() * 200 + 1)}`;
     const res = await fetch(`${BASE_URL}/api/register`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "x-forwarded-for": testIp,
+      },
       body: JSON.stringify(testPayload),
     });
 
@@ -55,7 +59,8 @@ async function run() {
       console.log("\n📊 Server Response:");
       console.log(`- Message: ${data.message}`);
       console.log("- Saved Record:", data.record);
-      console.log("\n✨ Test completed successfully! Data sent to Google Sheet.\n");
+      console.log("\n✨ Test completed successfully! Data sent to Google Sheet & Admin Email Notification triggered.\n");
+
     } else {
       console.error(`❌ [${res.status} Error] Submission Failed:`, data);
       process.exit(1);

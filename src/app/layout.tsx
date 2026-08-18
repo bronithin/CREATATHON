@@ -39,13 +39,43 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
+const siteTitle = "Creatathon 2026 | Kerala's Biggest Creator Festival in Kochi";
+const siteDescription =
+  "Creatathon is Kerala's first & biggest creator festival, bringing together creators, brands, and agencies to celebrate the creator economy.";
+const siteUrl = "https://creatathon.in";
+
 export const metadata: Metadata = {
-  title: "Creatathon 2026 | Kerala's Biggest Creator Festival in Kochi",
-  description:
-    "Creatathon is Kerala's first & biggest creator festival, bringing together creators, brands, and agencies to celebrate the creator economy.",
-  metadataBase: new URL("https://creatathon.in"),
+  title: siteTitle,
+  description: siteDescription,
+  metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
+    siteName: "Creatathon 2026",
+    images: [
+      {
+        url: "/elements/creatathon-badge.svg",
+        width: 800,
+        height: 600,
+        alt: "Creatathon 2026 Festival Badge",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/elements/creatathon-badge.svg"],
+  },
   icons: {
     icon: "/elements/creatathon-logo.svg",
+    apple: "/elements/creatathon-logo.svg",
   },
 };
 

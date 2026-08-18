@@ -45,12 +45,14 @@ export interface RegistrationInput {
   location: string;
   socialLink: string;
   followerCount: string;
+  hp_website?: string; // Honeypot field for anti-bot protection
 }
 
 export interface ValidationResult {
   isValid: boolean;
+  isBot: boolean;
   errors: Record<string, string>;
-  sanitizedData: RegistrationInput;
+  sanitizedData: Omit<RegistrationInput, "hp_website">;
 }
 
 /**
@@ -58,6 +60,10 @@ export interface ValidationResult {
  */
 export function validateRegistration(data: Partial<RegistrationInput>): ValidationResult {
   const errors: Record<string, string> = {};
+
+  // Honeypot check - if populated, mark as bot
+  const honeypot = sanitizeInput(data.hp_website);
+  const isBot = Boolean(honeypot && honeypot.length > 0);
 
   const tab = data.tab === "brand" ? "brand" : data.tab === "influencer" ? "influencer" : undefined;
   if (!tab) {
@@ -114,6 +120,7 @@ export function validateRegistration(data: Partial<RegistrationInput>): Validati
 
   return {
     isValid: Object.keys(errors).length === 0,
+    isBot,
     errors,
     sanitizedData: {
       tab: tab || "influencer",

@@ -28,12 +28,14 @@ export default function RegisterFormSection({
     location: "",
     socialLink: "",
     followerCount: "Under 10k",
+    hp_website: "",
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [registrationId, setRegistrationId] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -57,6 +59,7 @@ export default function RegisterFormSection({
       location: formData.location,
       socialLink: formData.socialLink,
       followerCount: formData.followerCount,
+      hp_website: formData.hp_website,
     });
 
     setErrors(result.errors);
@@ -82,11 +85,13 @@ export default function RegisterFormSection({
           location: formData.location,
           socialLink: formData.socialLink,
           followerCount: formData.followerCount,
+          hp_website: formData.hp_website,
         }),
       });
 
       const data = await res.json();
       if (res.ok && data.success) {
+        setRegistrationId(data.registrationId || data.record?.["Registration ID"] || "CRT1000");
         setShowSuccess(true);
       } else {
         if (data.errors && typeof data.errors === "object") {
@@ -94,8 +99,7 @@ export default function RegisterFormSection({
         }
         setSubmitError(data.error || "Failed to save registration. Please check your inputs.");
       }
-    } catch (err) {
-      console.error("Registration submit error:", err);
+    } catch {
       setSubmitError("Network error. Please check your internet connection and try again.");
     } finally {
       setIsSubmitting(false);
@@ -105,11 +109,13 @@ export default function RegisterFormSection({
   const handleCloseSuccess = () => {
     setShowSuccess(false);
     setSubmitError(null);
+    setRegistrationId(null);
     setFormData({
       name: "",
       location: "",
       socialLink: "",
       followerCount: "Under 10k",
+      hp_website: "",
     });
   };
 
@@ -201,6 +207,19 @@ export default function RegisterFormSection({
             className="w-full bg-white p-5 sm:p-6 flex flex-col gap-4 shadow-xl"
             noValidate
           >
+            {/* Anti-Bot Honeypot Field (Hidden from normal users) */}
+            <input
+              type="text"
+              name="hp_website"
+              id="hp_website"
+              value={formData.hp_website}
+              onChange={handleChange}
+              tabIndex={-1}
+              autoComplete="off"
+              style={{ display: "none" }}
+              aria-hidden="true"
+            />
+
             {/* Field 1: Name / Handle */}
             <div className="flex flex-col gap-1.5 text-left">
               <label
@@ -400,6 +419,7 @@ export default function RegisterFormSection({
         isOpen={showSuccess}
         onClose={handleCloseSuccess}
         tab={tab}
+        registrationId={registrationId || undefined}
         formData={formData}
       />
     </>

@@ -1,13 +1,11 @@
 /**
- * Google Sheet Configuration Module
+ * Google Sheet & Admin Configuration Module (Server-Side Only)
  *
- * Reads values from .env / .env.local:
+ * Reads values exclusively from server environment variables (.env / .env.local):
  * - GOOGLE_SHEET_URL
  * - GOOGLE_SHEET_ID
  * - GOOGLE_SHEET_WEBHOOK_URL
- *
- * If you ever change the sheet in the future, you only need to change
- * the variables in your `.env` or `.env.local` file!
+ * - ADMIN_MAIL
  */
 
 function extractSheetId(urlOrId: string): string {
@@ -28,11 +26,30 @@ export const GOOGLE_SHEET_CONFIG = {
     return extractSheetId(this.sheetUrl);
   },
 
+  /**
+   * Secure server-side webhook URL only.
+   * No fallback to any client-exposed NEXT_PUBLIC_ variable.
+   */
   get webhookUrl(): string {
+    return process.env.GOOGLE_SHEET_WEBHOOK_URL?.trim() || "";
+  },
+
+  /**
+   * Administrator recipient email for registration alerts.
+   * Must be explicitly configured in server environment.
+   */
+  get adminMail(): string {
     return (
-      process.env.GOOGLE_SHEET_WEBHOOK_URL?.trim() ||
-      process.env.NEXT_PUBLIC_GOOGLE_SHEET_WEBHOOK_URL?.trim() ||
+      process.env.ADMIN_MAIL?.trim() ||
+      process.env.ADMIN_EMAIL?.trim() ||
       ""
     );
+  },
+
+  /**
+   * Checks whether the necessary server-side configuration is active
+   */
+  get isConfigured(): boolean {
+    return Boolean(this.webhookUrl && this.webhookUrl.length > 0);
   },
 };
