@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function TopBanner() {
   return (
@@ -18,7 +19,7 @@ export default function TopBanner() {
 
       {/* Yellow Header Bar (H=68px) with Creatathon Script Logo (174x54) */}
       <div className="w-full h-[68px] bg-[#FCD60B] flex items-center justify-center relative">
-        <div className="w-[174px] h-[54px] relative flex items-center justify-center">
+        <Link href="/" className="w-[174px] h-[54px] relative flex items-center justify-center cursor-pointer transition-transform hover:scale-105" aria-label="Creatathon Home">
           <Image
             src="/elements/creatathon-logo.svg"
             alt="Creatathon Logo"
@@ -27,7 +28,7 @@ export default function TopBanner() {
             className="w-[174px] h-[54px] object-contain block"
             priority
           />
-        </div>
+        </Link>
       </div>
     </header>
   );

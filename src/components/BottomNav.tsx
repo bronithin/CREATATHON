@@ -1,16 +1,42 @@
-import React from "react";
+"use client";
 
-export default function BottomNav() {
+import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+interface BottomNavProps {
+  activeKey?: string;
+}
+
+export default function BottomNav({ activeKey }: BottomNavProps) {
+  const pathname = usePathname();
+
+  const getActiveTab = () => {
+    if (activeKey) return activeKey.toUpperCase();
+    if (pathname === "/create") return "CREATE";
+    if (pathname === "/ranks") return "RANKS";
+    if (pathname === "/wallet") return "WALLET";
+    if (pathname === "/coming-soon") return "CREATE";
+    return "EXPLORE";
+  };
+
+  const active = getActiveTab();
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pointer-events-none select-none">
       <nav className="pointer-events-auto w-[402px] h-[78px] bg-white border-t-[2px] border-black flex items-center justify-around px-2 shadow-2xl">
         {/* Tab 1: EXPLORE */}
-        <button
-          className="flex flex-col items-center justify-center gap-1.5 px-3 py-1 cursor-pointer transition-transform hover:scale-105"
+        <Link
+          href="/"
+          className={`flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-xl cursor-pointer transition-all hover:scale-105 ${
+            active === "EXPLORE"
+              ? "bg-[#FDF9EB] border-[1.5px] border-black shadow-[2px_2px_0px_#000000]"
+              : "opacity-75 hover:opacity-100"
+          }`}
           aria-label="Explore"
         >
           {/* Compass Icon in Circle */}
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="w-[26px] h-[26px]">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="w-[24px] h-[24px]">
             <circle cx="14" cy="14" r="11" stroke="#18181B" strokeWidth="2.6" />
             <path
               d="M14 6.8L17.8 14L14 21.2L10.2 14Z"
@@ -22,15 +48,20 @@ export default function BottomNav() {
           <span className="font-jetbrains text-[10px] font-bold leading-[15px] tracking-[0px] uppercase align-middle text-[#18181B]">
             EXPLORE
           </span>
-        </button>
+        </Link>
 
         {/* Tab 2: CREATE */}
-        <button
-          className="flex flex-col items-center justify-center gap-1.5 px-3 py-1 cursor-pointer transition-transform hover:scale-105"
+        <Link
+          href="/create"
+          className={`flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-xl cursor-pointer transition-all hover:scale-105 ${
+            active === "CREATE"
+              ? "bg-[#FFD200]/25 border-[1.5px] border-black shadow-[2px_2px_0px_#000000]"
+              : "opacity-75 hover:opacity-100"
+          }`}
           aria-label="Create"
         >
           {/* Isometric 3D Cube with Center Node */}
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="w-[26px] h-[26px]">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="w-[24px] h-[24px]">
             <path
               d="M14 2.5L24 8.27V19.73L14 25.5L4 19.73V8.27L14 2.5Z"
               stroke="#18181B"
@@ -48,15 +79,20 @@ export default function BottomNav() {
           <span className="font-jetbrains text-[10px] font-bold leading-[15px] tracking-[0px] uppercase align-middle text-[#18181B]">
             CREATE
           </span>
-        </button>
+        </Link>
 
         {/* Tab 3: RANKS */}
-        <button
-          className="flex flex-col items-center justify-center gap-1.5 px-3 py-1 cursor-pointer transition-transform hover:scale-105"
+        <Link
+          href="/ranks"
+          className={`flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-xl cursor-pointer transition-all hover:scale-105 ${
+            active === "RANKS"
+              ? "bg-[#0054D9]/15 border-[1.5px] border-black shadow-[2px_2px_0px_#000000]"
+              : "opacity-75 hover:opacity-100"
+          }`}
           aria-label="Ranks"
         >
           {/* Trophy Cup Icon */}
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="w-[26px] h-[26px]">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="w-[24px] h-[24px]">
             <path
               d="M7 4H21V10C21 13.866 17.866 17 14 17C10.134 17 7 13.866 7 10V4Z"
               stroke="#18181B"
@@ -89,15 +125,20 @@ export default function BottomNav() {
           <span className="font-jetbrains text-[10px] font-bold leading-[15px] tracking-[0px] uppercase align-middle text-[#18181B]">
             RANKS
           </span>
-        </button>
+        </Link>
 
         {/* Tab 4: WALLET */}
-        <button
-          className="flex flex-col items-center justify-center gap-1.5 px-3 py-1 cursor-pointer transition-transform hover:scale-105"
+        <Link
+          href="/wallet"
+          className={`flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-xl cursor-pointer transition-all hover:scale-105 ${
+            active === "WALLET"
+              ? "bg-[#00D890]/25 border-[1.5px] border-black shadow-[2px_2px_0px_#000000]"
+              : "opacity-75 hover:opacity-100"
+          }`}
           aria-label="Wallet"
         >
           {/* Wallet / Passholder Icon */}
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="w-[26px] h-[26px]">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="w-[24px] h-[24px]">
             <rect
               x="3"
               y="5"
@@ -121,7 +162,7 @@ export default function BottomNav() {
           <span className="font-jetbrains text-[10px] font-bold leading-[15px] tracking-[0px] uppercase align-middle text-[#18181B]">
             WALLET
           </span>
-        </button>
+        </Link>
       </nav>
     </div>
   );
