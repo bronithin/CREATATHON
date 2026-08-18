@@ -12,7 +12,7 @@ export const metadata = {
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#FDF9EB] text-[#18181B] flex flex-col items-center select-none overflow-x-hidden">
-      <main className="w-[402px] max-w-[402px] min-h-screen bg-[#FDF9EB] shadow-2xl border-x border-black/15 relative flex flex-col mx-auto overflow-x-hidden">
+      <main className="w-full max-w-[402px] min-h-screen bg-[#FDF9EB] shadow-2xl border-x border-black/15 relative flex flex-col mx-auto overflow-x-hidden">
         {/* 1. Header with Red Announcement & Yellow Logo */}
         <TopBanner />
 

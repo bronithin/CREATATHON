@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import RegisterSuccessModal from "./RegisterSuccessModal";
+import { validateRegistration } from "@/lib/validation";
 
 interface RegisterFormSectionProps {
   activeTab?: "influencer" | "brand";
@@ -32,6 +33,7 @@ export default function RegisterFormSection({
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -43,37 +45,66 @@ export default function RegisterFormSection({
         return next;
       });
     }
+    if (submitError) {
+      setSubmitError(null);
+    }
   };
 
   const validate = () => {
-    const newErrors: { [key: string]: string } = {};
-    if (!formData.name.trim()) {
-      newErrors.name = tab === "influencer" ? "Handle is required" : "Brand name is required";
-    }
-    if (!formData.location.trim()) {
-      newErrors.location = "Location is required";
-    }
-    if (!formData.socialLink.trim()) {
-      newErrors.socialLink = "Primary link is required";
-    }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    const result = validateRegistration({
+      tab,
+      name: formData.name,
+      location: formData.location,
+      socialLink: formData.socialLink,
+      followerCount: formData.followerCount,
+    });
+
+    setErrors(result.errors);
+    return result.isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
-    // Simulate API request
-    setTimeout(() => {
+    setSubmitError(null);
+
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tab,
+          name: formData.name,
+          location: formData.location,
+          socialLink: formData.socialLink,
+          followerCount: formData.followerCount,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setShowSuccess(true);
+      } else {
+        if (data.errors && typeof data.errors === "object") {
+          setErrors(data.errors);
+        }
+        setSubmitError(data.error || "Failed to save registration. Please check your inputs.");
+      }
+    } catch (err) {
+      console.error("Registration submit error:", err);
+      setSubmitError("Network error. Please check your internet connection and try again.");
+    } finally {
       setIsSubmitting(false);
-      setShowSuccess(true);
-    }, 600);
+    }
   };
 
   const handleCloseSuccess = () => {
     setShowSuccess(false);
+    setSubmitError(null);
     setFormData({
       name: "",
       location: "",
@@ -194,7 +225,7 @@ export default function RegisterFormSection({
                 value={formData.name}
                 onChange={handleChange}
                 placeholder={tab === "influencer" ? "@creatorname" : "e.g. Acme Studio"}
-                className={`w-full h-[55px] px-4 border text-[#18181B] bg-white text-[15px] font-normal placeholder-[#18181B]/40 focus:outline-hidden focus:ring-2 focus:ring-[#0054D9] ${
+                className={`w-full h-[55px] px-4 border text-[#18181B] bg-white text-[16px] font-normal placeholder-[#18181B]/40 focus:outline-hidden focus:ring-2 focus:ring-[#0054D9] ${
                   errors.name ? "border-[#FF0052] ring-1 ring-[#FF0052]" : "border-black"
                 }`}
                 disabled={isSubmitting}
@@ -231,7 +262,7 @@ export default function RegisterFormSection({
                 value={formData.location}
                 onChange={handleChange}
                 placeholder="City, State"
-                className={`w-full h-[55px] px-4 border text-[#18181B] bg-white text-[15px] font-normal placeholder-[#18181B]/40 focus:outline-hidden focus:ring-2 focus:ring-[#0054D9] ${
+                className={`w-full h-[55px] px-4 border text-[#18181B] bg-white text-[16px] font-normal placeholder-[#18181B]/40 focus:outline-hidden focus:ring-2 focus:ring-[#0054D9] ${
                   errors.location ? "border-[#FF0052] ring-1 ring-[#FF0052]" : "border-black"
                 }`}
                 disabled={isSubmitting}
@@ -268,7 +299,7 @@ export default function RegisterFormSection({
                 value={formData.socialLink}
                 onChange={handleChange}
                 placeholder={tab === "influencer" ? "instagram.com/..." : "brandwebsite.com"}
-                className={`w-full h-[55px] px-4 border text-[#18181B] bg-white text-[15px] font-normal placeholder-[#18181B]/40 focus:outline-hidden focus:ring-2 focus:ring-[#0054D9] ${
+                className={`w-full h-[55px] px-4 border text-[#18181B] bg-white text-[16px] font-normal placeholder-[#18181B]/40 focus:outline-hidden focus:ring-2 focus:ring-[#0054D9] ${
                   errors.socialLink ? "border-[#FF0052] ring-1 ring-[#FF0052]" : "border-black"
                 }`}
                 disabled={isSubmitting}
@@ -304,7 +335,7 @@ export default function RegisterFormSection({
                   name="followerCount"
                   value={formData.followerCount}
                   onChange={handleChange}
-                  className="w-full h-[57px] px-4 border border-black text-[#18181B] bg-white text-[15px] font-normal focus:outline-hidden focus:ring-2 focus:ring-[#0054D9] appearance-none cursor-pointer pr-10"
+                  className="w-full h-[57px] px-4 border border-black text-[#18181B] bg-white text-[16px] font-normal focus:outline-hidden focus:ring-2 focus:ring-[#0054D9] appearance-none cursor-pointer pr-10"
                   disabled={isSubmitting}
                 >
                   <option value="Under 10k">Under 10k</option>
@@ -327,6 +358,13 @@ export default function RegisterFormSection({
                 </div>
               </div>
             </div>
+
+            {/* Global Submit Error Message */}
+            {submitError && (
+              <div className="p-3 bg-[#FFF4F6] border-2 border-[#FF0052] text-[#FF0052] font-jetbrains text-xs font-bold text-center">
+                {submitError}
+              </div>
+            )}
 
             {/* Submit Button */}
             <button

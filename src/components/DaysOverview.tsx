@@ -5,7 +5,7 @@ export default function DaysOverview() {
   return (
     <section
       id="schedule"
-      className="relative w-full max-w-[402px] md:max-w-none bg-[#FFD200] text-[#18181B] pt-[26px] pb-[16px] md:py-20 lg:py-24 px-[20px] md:px-12 select-none mx-auto"
+      className="relative w-full max-w-[402px] md:max-w-none bg-[#FFD200] text-[#18181B] pt-[26px] pb-[16px] md:py-20 lg:py-24 px-[20px] md:px-12 select-none mx-auto overflow-hidden"
     >
       {/* Left Margin Pink Star Decorator */}
       <div className="absolute -top-[22px] left-0 md:top-4 md:left-8 lg:left-14 z-20 pointer-events-none">

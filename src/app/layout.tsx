@@ -36,7 +36,7 @@ export const viewport: Viewport = {
   themeColor: "#FCD60B",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5,
+  maximumScale: 1,
 };
 
 export const metadata: Metadata = {
@@ -57,6 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${anton.variable} ${bebasNeue.variable} ${jakarta.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen bg-[#FDF9EB] text-[#18181B] font-sans antialiased overflow-x-hidden flex flex-col items-center">

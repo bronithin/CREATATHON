@@ -16,13 +16,47 @@
     --font-mono: var(--font-jetbrains-mono), monospace;
   }
 
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    max-width: 100vw;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    width: 100%;
+  }
+
   body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
     background-color: #FDF9EB;
     color: #121214;
     font-family: var(--font-sans);
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
+    touch-action: manipulation;
+  }
+
+  main,
+  section,
+  header,
+  footer {
+    max-width: 100%;
+  }
+
+  /* Prevent mobile browsers (especially iOS Safari) from auto-zooming on focus */
+  @media screen and (max-width: 768px) {
+    input,
+    select,
+    textarea {
+      font-size: 16px !important;
+    }
   }
 }
 

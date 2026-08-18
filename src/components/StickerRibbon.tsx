@@ -5,14 +5,14 @@ export default function StickerRibbon() {
   return (
     <div className="w-full h-[52px] md:h-[64px] lg:h-[70px] select-none overflow-hidden flex items-center justify-center bg-white border-y-2 border-black/80">
       {/* Mobile single ribbon view */}
-      <div className="flex md:hidden w-[402px] h-[52px] shrink-0 items-center justify-center">
+      <div className="flex md:hidden w-full max-w-[402px] h-[52px] shrink-0 items-center justify-center overflow-hidden">
         <Image
           src="/elements/sticker-ribbon.svg"
           alt="Creatathon Stickers Strip"
           width={402}
           height={52}
-          style={{ width: "402px", height: "52px" }}
-          className="object-cover block"
+          style={{ width: "100%", height: "auto" }}
+          className="object-cover block max-w-full"
           priority
         />
       </div>
@@ -25,10 +25,10 @@ export default function StickerRibbon() {
               key={`r1-${i}`}
               src="/elements/sticker-ribbon.svg"
               alt="Creatathon Stickers Strip"
-              width={600}
-              height={70}
+              width={402}
+              height={52}
               style={{ width: "auto", height: "auto" }}
-              className="w-auto h-[60px] lg:h-[68px] object-contain block shrink-0"
+              className="h-[60px] lg:h-[68px] w-auto object-contain block shrink-0"
             />
           ))}
         </div>
@@ -38,10 +38,10 @@ export default function StickerRibbon() {
               key={`r2-${i}`}
               src="/elements/sticker-ribbon.svg"
               alt="Creatathon Stickers Strip"
-              width={600}
-              height={70}
+              width={402}
+              height={52}
               style={{ width: "auto", height: "auto" }}
-              className="w-auto h-[60px] lg:h-[68px] object-contain block shrink-0"
+              className="h-[60px] lg:h-[68px] w-auto object-contain block shrink-0"
             />
           ))}
         </div>

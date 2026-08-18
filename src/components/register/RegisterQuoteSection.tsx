@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function RegisterQuoteSection() {
   return (
-    <section className="w-full bg-[#FF0052] relative flex flex-col items-center justify-center pt-14 pb-16 px-4 select-none">
+    <section className="w-full bg-[#FF0052] relative flex flex-col items-center justify-center pt-14 pb-16 px-4 select-none overflow-hidden">
       {/* Decorative Yellow Starburst on Top Left (down-top-bottom.svg) */}
       <div className="absolute left-0 -top-7 pointer-events-none select-none z-10">
         <Image

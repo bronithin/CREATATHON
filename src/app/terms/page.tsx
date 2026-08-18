@@ -887,7 +887,7 @@ export default function TermsPage() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="e.g. Eligibility, Media, IP..."
-                  className="w-full px-3.5 py-2.5 bg-[#FDF9EB] rounded-xl border-[2px] border-black text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#0054D9]"
+                  className="w-full px-3.5 py-2.5 bg-[#FDF9EB] rounded-xl border-[2px] border-black text-[16px] sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#0054D9]"
                 />
                 {searchQuery && (
                   <button

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative z-10 w-full h-[235px] md:h-auto md:min-h-[480px] lg:min-h-[560px] bg-transparent md:bg-[#0054D9] text-white select-none overflow-visible md:overflow-hidden flex flex-col justify-start md:justify-center">
+    <section className="relative z-10 w-full h-[235px] md:h-auto md:min-h-[480px] lg:min-h-[560px] bg-transparent md:bg-[#0054D9] text-white select-none overflow-hidden flex flex-col justify-start md:justify-center">
       {/* Mobile Blue Rotated Background */}
       <div
         className="block md:hidden absolute -top-[10px] -left-[40px] w-[520px] h-[285px] bg-[#0054D9] pointer-events-none z-0"
