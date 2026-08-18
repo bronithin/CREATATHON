@@ -24,7 +24,7 @@ export default function AboutSection() {
       </div>
 
       {/* Middle Grid: Left Text + Right Green Scalloped Flower with Cream Star */}
-      <div className="relative flex items-center justify-between gap-2 pl-[25px] pr-0 my-[10px]">
+      <div className="relative flex items-center justify-between pl-[25px] my-[10px] min-h-[145px]">
         {/* Left Column Copy */}
         <div className="max-w-[215px] z-10">
           <p className="font-sans font-medium text-[15.5px] leading-[1.18] tracking-tight text-[#FFD200] uppercase">
@@ -44,14 +44,14 @@ export default function AboutSection() {
           </p>
         </div>
 
-        {/* Right Green Flower Blob (97x137) flush right with Cream Star overlapping top-left */}
-        <div className="relative w-[97px] h-[137px] flex-shrink-0">
+        {/* Right Green Flower Blob (138x138) extending past right edge + Cream Star */}
+        <div className="absolute right-[-40px] top-[4px] w-[138px] h-[138px] pointer-events-none z-0">
           <Image
             src="/elements/flower-green.svg"
             alt="Green Flower Blob"
-            width={97}
-            height={137}
-            className="w-[97px] h-[137px] object-contain block"
+            width={138}
+            height={138}
+            className="w-full h-full object-contain block"
           />
           {/* Cream 8-pointed star overlapping top-left of green flower blob */}
           <div className="absolute -left-[57px] -top-[4px] w-[96px] h-[105px] pointer-events-none z-20">
@@ -60,7 +60,7 @@ export default function AboutSection() {
               alt="Cream Star"
               width={96}
               height={105}
-              className="w-[96px] h-[105px] object-contain block"
+              className="w-full h-full object-contain block"
             />
           </div>
         </div>

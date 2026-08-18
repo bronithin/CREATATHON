@@ -34,48 +34,108 @@ export default function DaysOverview() {
       <div className="relative w-full h-[175px] my-[6px]">
         {/* Pill 1: CREATOR STAGE (189x45, rot -4.62deg) */}
         <div
-          className="absolute left-[14px] top-[4px] w-[189px] h-[45px] rounded-full bg-[#0149E7] text-[#FFD200] font-display font-black text-[15px] flex items-center justify-center border border-black/30"
-          style={{ transform: "rotate(-4.62deg)" }}
+          className="absolute left-[14px] top-[4px] w-[189px] h-[45px] rounded-full bg-[#0149E7] text-[#FFD200] flex items-center justify-center border border-black/30 select-none"
+          style={{
+            fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+            fontWeight: 700,
+            fontSize: "16px",
+            lineHeight: "45px",
+            letterSpacing: "0px",
+            textAlign: "center",
+            verticalAlign: "middle",
+            textTransform: "uppercase",
+            transform: "rotate(-4.62deg)",
+          }}
         >
-          CREATOR STAGE
+          conversations
         </div>
 
         {/* Pill 2: LEARN & MASTER (163x45, rot 0deg) */}
         <div
-          className="absolute right-[14px] top-[0px] w-[163px] h-[45px] rounded-full bg-[#00D890] text-[#0149E7] font-display font-black text-[15px] flex items-center justify-center border border-black/30"
+          className="absolute right-[14px] top-[0px] w-[163px] h-[45px] rounded-full bg-[#00D890] text-[#0149E7] flex items-center justify-center border border-black/30 select-none"
+          style={{
+            fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+            fontWeight: 700,
+            fontSize: "16px",
+            lineHeight: "45px",
+            letterSpacing: "0px",
+            textAlign: "center",
+            verticalAlign: "middle",
+            textTransform: "uppercase",
+          }}
         >
-          LEARN &amp; MASTER
+          experiences
         </div>
 
         {/* Pill 3: BRAND EXPO (187x45, rot 6.04deg) */}
         <div
-          className="absolute right-[14px] top-[42px] w-[187px] h-[45px] rounded-full bg-[#FF0052] text-[#F6D202] font-display font-black text-[15px] flex items-center justify-center border border-black/30 z-10"
-          style={{ transform: "rotate(6.04deg)" }}
+          className="absolute right-[14px] top-[42px] w-[187px] h-[45px] rounded-full bg-[#FF0052] text-[#F6D202] flex items-center justify-center border border-black/30 z-10 select-none"
+          style={{
+            fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+            fontWeight: 700,
+            fontSize: "16px",
+            lineHeight: "45px",
+            letterSpacing: "0px",
+            textAlign: "center",
+            verticalAlign: "middle",
+            textTransform: "uppercase",
+            transform: "rotate(6.04deg)",
+          }}
         >
-          BRAND EXPO
+          entertainment
         </div>
 
         {/* Pill 4: NETWORKING (155x45, rot -3.82deg) */}
         <div
-          className="absolute left-[18px] top-[48px] w-[155px] h-[45px] rounded-full bg-[#FDF9EB] text-[#FF0052] font-display font-black text-[15px] flex items-center justify-center border border-black/30 z-10"
-          style={{ transform: "rotate(-3.82deg)" }}
+          className="absolute left-[18px] top-[48px] w-[155px] h-[45px] rounded-full bg-[#FDF9EB] text-[#FF0052] flex items-center justify-center border border-black/30 z-10 select-none"
+          style={{
+            fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+            fontWeight: 700,
+            fontSize: "16px",
+            lineHeight: "45px",
+            letterSpacing: "0px",
+            textAlign: "center",
+            verticalAlign: "middle",
+            textTransform: "uppercase",
+            transform: "rotate(-3.82deg)",
+          }}
         >
-          NETWORKING
+          workshops
         </div>
 
         {/* Pill 5: CREATOR AWARDS (160x45, rot 0deg) */}
         <div
-          className="absolute left-[121px] top-[86px] w-[160px] h-[45px] rounded-full bg-[#0149E7] text-[#00D890] font-display font-black text-[15px] flex items-center justify-center border border-black/30 z-20"
+          className="absolute left-[121px] top-[86px] w-[160px] h-[45px] rounded-full bg-[#0149E7] text-[#00D890] flex items-center justify-center border border-black/30 z-20 select-none"
+          style={{
+            fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+            fontWeight: 700,
+            fontSize: "16px",
+            lineHeight: "45px",
+            letterSpacing: "0px",
+            textAlign: "center",
+            verticalAlign: "middle",
+            textTransform: "uppercase",
+          }}
         >
-          CREATOR AWARDS
+          networking
         </div>
 
         {/* Pill 6: AFTER PARTY (132x45, rot 3.76deg) */}
         <div
-          className="absolute left-[135px] top-[124px] w-[132px] h-[45px] rounded-full bg-[#FF0052] text-[#FDF9EB] font-display font-black text-[15px] flex items-center justify-center border border-black/30 z-30"
-          style={{ transform: "rotate(3.76deg)" }}
+          className="absolute left-[135px] top-[124px] w-[132px] h-[45px] rounded-full bg-[#FF0052] text-[#FDF9EB] flex items-center justify-center border border-black/30 z-30 select-none"
+          style={{
+            fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+            fontWeight: 700,
+            fontSize: "16px",
+            lineHeight: "45px",
+            letterSpacing: "0px",
+            textAlign: "center",
+            verticalAlign: "middle",
+            textTransform: "uppercase",
+            transform: "rotate(3.76deg)",
+          }}
         >
-          AFTER PARTY
+          creation
         </div>
       </div>
     </section>

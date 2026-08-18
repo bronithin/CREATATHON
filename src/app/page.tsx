@@ -7,6 +7,7 @@ import WhatsInSection from "@/components/WhatsInSection";
 import MoreThanFestival from "@/components/MoreThanFestival";
 import DaysOverview from "@/components/DaysOverview";
 import BelongSection from "@/components/BelongSection";
+import EcosystemSection from "@/components/EcosystemSection";
 import WhatHappensSection from "@/components/WhatHappensSection";
 import FeatureCards from "@/components/FeatureCards";
 import CommunityFooter from "@/components/CommunityFooter";
@@ -36,7 +37,10 @@ export default function Home() {
       {/* 7. Yellow "CREATATHON 2026 / 2 DAYS OF" Section with pill badges */}
       <DaysOverview />
 
-      {/* 8. Yellow "IF YOU'RE PART OF THE CREATOR ECOSYSTEM / THIS IS WHERE YOU BELONG" Section */}
+      {/* 8. Yellow "IF YOU'RE PART OF THE CREATOR ECOSYSTEM" Section with tiles */}
+      <EcosystemSection />
+
+      {/* 9. Yellow "THIS IS WHERE YOU BELONG" Section with green flower and pink wave */}
       <BelongSection />
 
       {/* 9. Pink "WHAT HAPPENS AT CREATATHON?" Section with 5 scalloped organic flower buttons */}

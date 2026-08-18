@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Anton, Bebas_Neue, Plus_Jakarta_Sans } from "next/font/google";
+import { Anton, Bebas_Neue, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const anton = Anton({
@@ -19,6 +19,12 @@ const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  weight: ["400", "700"],
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Creatathon 2026 | Kerala's Biggest Creator Festival in Kochi",
   description:
@@ -33,7 +39,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${anton.variable} ${bebasNeue.variable} ${jakarta.variable}`}
+      className={`${anton.variable} ${bebasNeue.variable} ${jakarta.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen bg-[#FDF9EB] text-[#18181B] font-sans antialiased overflow-x-hidden flex flex-col items-center">
         {children}

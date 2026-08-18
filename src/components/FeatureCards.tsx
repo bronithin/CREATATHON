@@ -79,28 +79,49 @@ export default function FeatureCards() {
           className="border-2 border-black p-[20px] shadow-box-card flex flex-col justify-between"
           style={{
             width: card.width,
-            height: card.height,
+            minHeight: card.height,
             backgroundColor: card.bg,
             transform: card.rotation,
           }}
         >
           {/* Card Header Title */}
           <h3
-            className="font-display text-[26px] font-black leading-[0.95] tracking-tight uppercase"
-            style={{ color: card.titleColor }}
+            className="uppercase mb-[16px]"
+            style={{
+              color: card.titleColor,
+              fontFamily: "var(--font-anton), Anton, sans-serif",
+              fontWeight: 400,
+              fontStyle: "normal",
+              fontSize: "40px",
+              lineHeight: "110%",
+              letterSpacing: "0px",
+              verticalAlign: "middle",
+              textTransform: "uppercase",
+            }}
           >
             {card.title}
           </h3>
 
           {/* Inset White/Cream Content Card Box */}
           <div
-            className="border-2 border-black/15 p-[14px] flex items-center"
+            className="border-2 border-black/15 p-[16px] flex items-center"
             style={{
               backgroundColor: card.innerBg,
               minHeight: card.innerBoxHeight,
             }}
           >
-            <p className="text-[12px] font-medium text-[#434654] leading-snug">
+            <p
+              style={{
+                fontFamily: "'Halenoir', var(--font-jakarta), system-ui, sans-serif",
+                fontWeight: 400,
+                fontStyle: "normal",
+                fontSize: "21px",
+                lineHeight: "124%",
+                letterSpacing: "-1px",
+                verticalAlign: "middle",
+                color: "#18181B",
+              }}
+            >
               {card.body}
             </p>
           </div>

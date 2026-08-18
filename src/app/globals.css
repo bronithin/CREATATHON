@@ -13,6 +13,7 @@
     --font-anton: var(--font-anton), Impact, sans-serif;
     --font-bebas: var(--font-bebas), sans-serif;
     --font-sans: var(--font-jakarta), system-ui, sans-serif;
+    --font-mono: var(--font-jetbrains-mono), monospace;
   }
 
   body {
@@ -38,6 +39,10 @@
 
 .font-anton {
   font-family: var(--font-anton), sans-serif;
+}
+
+.font-jetbrains {
+  font-family: var(--font-jetbrains-mono), monospace;
 }
 
 /* Custom visual utilities matching the reference aesthetics */

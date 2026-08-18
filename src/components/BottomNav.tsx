@@ -19,7 +19,7 @@ export default function BottomNav() {
             />
             <circle cx="14" cy="14" r="1.5" fill="#FFFFFF" />
           </svg>
-          <span className="font-display text-[12px] font-bold tracking-[0.06em] uppercase text-[#18181B]">
+          <span className="font-jetbrains text-[10px] font-bold leading-[15px] tracking-[0px] uppercase align-middle text-[#18181B]">
             EXPLORE
           </span>
         </button>
@@ -45,7 +45,7 @@ export default function BottomNav() {
             />
             <circle cx="14" cy="14" r="3.2" stroke="#18181B" strokeWidth="2.5" fill="#FFFFFF" />
           </svg>
-          <span className="font-display text-[12px] font-bold tracking-[0.06em] uppercase text-[#18181B]">
+          <span className="font-jetbrains text-[10px] font-bold leading-[15px] tracking-[0px] uppercase align-middle text-[#18181B]">
             CREATE
           </span>
         </button>
@@ -86,7 +86,7 @@ export default function BottomNav() {
               strokeLinejoin="round"
             />
           </svg>
-          <span className="font-display text-[12px] font-bold tracking-[0.06em] uppercase text-[#18181B]">
+          <span className="font-jetbrains text-[10px] font-bold leading-[15px] tracking-[0px] uppercase align-middle text-[#18181B]">
             RANKS
           </span>
         </button>
@@ -118,7 +118,7 @@ export default function BottomNav() {
             />
             <circle cx="21" cy="14" r="1.3" fill="#18181B" />
           </svg>
-          <span className="font-display text-[12px] font-bold tracking-[0.06em] uppercase text-[#18181B]">
+          <span className="font-jetbrains text-[10px] font-bold leading-[15px] tracking-[0px] uppercase align-middle text-[#18181B]">
             WALLET
           </span>
         </button>
