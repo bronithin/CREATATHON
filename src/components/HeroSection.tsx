@@ -3,10 +3,10 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative z-10 w-full h-[235px] md:h-auto md:min-h-[480px] lg:min-h-[560px] bg-transparent md:bg-[#0054D9] text-white select-none overflow-hidden flex flex-col justify-start md:justify-center">
+    <section className="relative z-10 w-full h-[235px] md:h-auto md:min-h-[480px] lg:min-h-[560px] bg-transparent md:bg-[#0054D9] text-white select-none overflow-visible flex flex-col justify-start md:justify-center">
       {/* Mobile Blue Rotated Background */}
       <div
-        className="block md:hidden absolute -top-[10px] -left-[40px] w-[520px] h-[285px] bg-[#0054D9] pointer-events-none z-0"
+        className="block md:hidden absolute top-0 -left-[30px] w-[calc(100%+60px)] h-[258px] bg-[#0054D9] pointer-events-none z-0"
         style={{
           transform: "rotate(-3.23deg)",
           transformOrigin: "30px 0px",
@@ -41,8 +41,8 @@ export default function HeroSection() {
       </div>
 
       {/* Main Hero Headline Text Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto pt-[18px] sm:pt-[24px] pb-[16px] pl-[20px] pr-[16px] sm:pl-[28px] sm:pr-[20px] md:pl-16 lg:pl-20 md:pr-10 md:py-20 lg:py-24">
-        <h1 className="font-anton font-normal text-[48px] sm:text-[54px] md:text-[84px] lg:text-[104px] xl:text-[116px] leading-[98%] md:leading-[100%] tracking-[0.2px] uppercase w-full max-w-[380px] md:max-w-[960px] flex flex-col gap-[1px] sm:gap-[3px] md:gap-2.5 select-none">
+      <div className="relative z-10 w-full max-w-7xl mx-auto pt-[20px] sm:pt-[24px] pb-[16px] pl-[20px] sm:pl-[28px] pr-[16px] sm:pr-[20px] md:pl-16 lg:pl-20 md:pr-10 md:py-20 lg:py-24">
+        <h1 className="font-anton font-normal text-[48px] sm:text-[54px] md:text-[84px] lg:text-[104px] xl:text-[116px] leading-[104%] md:leading-[100%] tracking-[0.3px] uppercase w-full max-w-[380px] md:max-w-[960px] flex flex-col gap-[2px] sm:gap-[3px] md:gap-2.5 select-none">
           <span className="text-white whitespace-nowrap">KERALA&rsquo;S</span>
           <span className="whitespace-nowrap">
             <span className="text-white">BIGGEST </span>
@@ -53,12 +53,12 @@ export default function HeroSection() {
       </div>
 
       {/* Yellow Star Shape centered right on the blue/red seam */}
-      <div className="absolute top-[204px] md:top-auto md:-bottom-[90px] lg:-bottom-[110px] left-0 md:left-0 w-[88px] h-[176px] md:w-[125px] md:h-[250px] lg:w-[150px] lg:h-[300px] z-30 pointer-events-none">
+      <div className="absolute top-[188px] sm:top-[192px] md:top-auto md:-bottom-[90px] lg:-bottom-[110px] left-0 md:left-0 w-[68px] h-[136px] sm:w-[76px] sm:h-[152px] md:w-[110px] md:h-[220px] lg:w-[130px] lg:h-[260px] z-30 pointer-events-none">
         <Image
           src="/elements/star-hero-yellow.svg"
           alt="Yellow Star Accent"
-          width={150}
-          height={300}
+          width={130}
+          height={260}
           style={{ width: "auto", height: "auto" }}
           className="w-full h-full object-contain block"
           priority
