@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --c-blue: #0054D9;
+    --c-pink: #FF0052;
+    --c-yellow: #FFD200;
+    --c-yellow-alt: #FCD60B;
+    --c-green: #00D890;
+    --c-cream: #FDF9EB;
+    --c-cream-card: #FFFAE5;
+    --c-dark: #121214;
+    --font-anton: var(--font-anton), Impact, sans-serif;
+    --font-bebas: var(--font-bebas), sans-serif;
+    --font-sans: var(--font-jakarta), system-ui, sans-serif;
+  }
+
+  body {
+    background-color: #FDF9EB;
+    color: #121214;
+    font-family: var(--font-sans);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.font-display {
+  font-family: var(--font-anton), var(--font-bebas), Impact, sans-serif;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
 }
+
+.font-bebas {
+  font-family: var(--font-bebas), var(--font-anton), sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.font-anton {
+  font-family: var(--font-anton), sans-serif;
+}
+
+/* Custom visual utilities matching the reference aesthetics */
+.shadow-badge-sm {
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.shadow-badge-left {
+  box-shadow: -2px 2px 0px #000000;
+}
+
+.shadow-badge-bottom {
+  box-shadow: 0px 2px 0px #000000;
+}
+
+.shadow-box-md {
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.shadow-box-card {
+  box-shadow: 4px 5px 0px #000000;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee-infinite {
+  display: flex;
+  min-width: 100%;
+  flex-shrink: 0;
+  animation: marquee-scroll 18s linear infinite;
+}
+
+.animate-marquee-infinite:hover {
+  animation-play-state: paused;
+}
+
