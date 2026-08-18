@@ -3,10 +3,10 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative z-10 w-full h-[265px] text-white select-none overflow-visible">
-      {/* Blue Rotated Background with increased size: W=462px, H=290px, Rotation=-3.23° */}
+    <section className="relative z-10 w-full h-[231px] text-white select-none overflow-visible">
+      {/* Blue Rotated Background with size: W=462px, H=254px, Rotation=-3.23° */}
       <div
-        className="absolute top-0 -left-[30px] w-[462px] h-[290px] bg-[#0054D9] pointer-events-none z-0"
+        className="absolute top-0 -left-[30px] w-[462px] h-[254px] bg-[#0054D9] pointer-events-none z-0"
         style={{
           transform: "rotate(-3.23deg)",
           transformOrigin: "30px 0px",
@@ -62,15 +62,14 @@ export default function HeroSection() {
         </h1>
       </div>
 
-      {/* Yellow Star Shape centered right on the blue/red seam with enlarged size */}
-      <div className="absolute top-[203px] left-0 w-[95px] h-[170px] z-30 pointer-events-none">
+      {/* Yellow Star Shape centered right on the blue/red seam matching Image 2 & Image 3 */}
+      <div className="absolute top-[207px] left-0 w-[64px] h-[127px] z-30 pointer-events-none">
         <Image
           src="/elements/star-hero-yellow.svg"
           alt="Yellow Star Accent"
-          width={95}
-          height={170}
-          style={{ width: "auto", height: "auto" }}
-          className="w-[95px] h-[170px] object-contain block"
+          width={64}
+          height={127}
+          className="w-[64px] h-[127px] block"
           priority
         />
       </div>
