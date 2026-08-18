@@ -11,6 +11,7 @@ export default function WhatsInSection() {
           alt="Yellow Starburst"
           width={63}
           height={68}
+          style={{ width: "auto", height: "auto" }}
           className="w-[63px] h-[68px] object-contain block"
         />
       </div>
@@ -22,6 +23,7 @@ export default function WhatsInSection() {
           alt="Pink Flame Splash"
           width={112}
           height={155}
+          style={{ width: "auto", height: "auto" }}
           className="w-[112px] h-[155px] object-contain block"
         />
       </div>
@@ -38,6 +40,7 @@ export default function WhatsInSection() {
             alt="Creatathon Badge"
             width={319}
             height={68}
+            style={{ width: "auto", height: "auto" }}
             className="w-[319px] h-[68px] object-contain block"
             priority
           />

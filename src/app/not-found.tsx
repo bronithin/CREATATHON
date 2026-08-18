@@ -34,6 +34,7 @@ export default function NotFound() {
                 alt="Star"
                 width={40}
                 height={40}
+                style={{ width: "auto", height: "auto" }}
                 className="w-full h-full object-contain"
               />
             </div>
@@ -43,6 +44,7 @@ export default function NotFound() {
                 alt="Flower"
                 width={40}
                 height={40}
+                style={{ width: "auto", height: "auto" }}
                 className="w-full h-full object-contain"
               />
             </div>

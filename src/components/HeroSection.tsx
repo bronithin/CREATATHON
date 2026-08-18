@@ -21,6 +21,7 @@ export default function HeroSection() {
           alt="Tile Accent"
           width={60}
           height={60}
+          style={{ width: "auto", height: "auto" }}
           className="w-full h-full object-contain block"
         />
       </div>
@@ -32,6 +33,7 @@ export default function HeroSection() {
           alt="Tile Spark"
           width={60}
           height={60}
+          style={{ width: "auto", height: "auto" }}
           className="w-full h-full object-contain block"
         />
       </div>
@@ -67,6 +69,7 @@ export default function HeroSection() {
           alt="Yellow Star Accent"
           width={54}
           height={96}
+          style={{ width: "auto", height: "auto" }}
           className="w-[54px] h-[96px] object-contain block"
         />
       </div>

@@ -11,6 +11,7 @@ export default function DaysOverview() {
           alt="Pink Star Decorator"
           width={38}
           height={68}
+          style={{ width: "auto", height: "auto" }}
           className="w-[38px] h-[68px] object-contain block"
         />
       </div>

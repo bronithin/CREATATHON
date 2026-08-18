@@ -40,6 +40,7 @@ export default function MoreThanFestival() {
             alt="Yellow Flower Blob"
             width={179}
             height={179}
+            style={{ width: "auto", height: "auto" }}
             className="w-full h-full object-contain block drop-shadow-[4px_4px_0px_#FF0052]"
           />
           {/* Quote text placed inside flower blob */}
@@ -96,6 +97,7 @@ export default function MoreThanFestival() {
           alt="Creators Working Together in Studio Arch"
           width={390}
           height={260}
+          style={{ width: "auto", height: "auto" }}
           className="w-[390px] h-[260px] object-contain block"
           priority
         />

@@ -9,31 +9,32 @@ export default function LoadingScreen() {
   const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
-    // Smooth progress progression
+    // Smooth progress progression with ease-in-out increments
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
           return 100;
         }
-        const increment = Math.floor(Math.random() * 15) + 12;
+        const increment = Math.floor(Math.random() * 14) + 10;
         const next = prev + increment;
         return next > 100 ? 100 : next;
       });
-    }, 100);
+    }, 110);
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (progress >= 100) {
+      // Allow user to see 100% briefly, then trigger smooth ease-in-out exit
       const exitTimer = setTimeout(() => {
         setIsExiting(true);
         const finishTimer = setTimeout(() => {
           setIsFinished(true);
-        }, 500);
+        }, 700);
         return () => clearTimeout(finishTimer);
-      }, 250);
+      }, 300);
 
       return () => clearTimeout(exitTimer);
     }
@@ -43,45 +44,41 @@ export default function LoadingScreen() {
 
   return (
     <div
-      className={`fixed inset-0 z-100 flex flex-col items-center justify-center bg-[#FCD60B] select-none transition-all duration-500 ease-in-out ${
-        isExiting ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
+      className={`fixed inset-0 z-100 flex flex-col items-center justify-center bg-[#FCD60B] select-none transition-all duration-700 ease-in-out ${
+        isExiting
+          ? "opacity-0 -translate-y-6 scale-[1.02] pointer-events-none"
+          : "opacity-100 translate-y-0 scale-100"
       }`}
     >
-      {/* Center 3D Angled Creatathon Sticker Logo */}
-      <div className="flex flex-col items-center justify-center px-4 w-full max-w-[360px]">
-        {/* Official Pink Logo Option */}
-        <div className="w-[260px] sm:w-[290px] h-[80px] relative flex items-center justify-center transition-transform hover:scale-105 duration-300">
+      <div className="flex flex-col items-center justify-center px-4 w-full max-w-[402px]">
+        {/* Extra Large 3D Angled Pink Creatathon Logo */}
+        <div
+          className={`w-[340px] sm:w-[380px] h-[115px] sm:h-[130px] relative flex items-center justify-center transition-all duration-700 ease-in-out ${
+            isExiting ? "scale-90 opacity-0" : "scale-100 opacity-100"
+          }`}
+        >
           <Image
             src="/elements/creatathon-logo.svg"
             alt="Creatathon"
-            width={290}
-            height={80}
-            className="w-full h-full object-contain block drop-shadow-[0_4px_16px_rgba(255,0,82,0.25)]"
+            width={380}
+            height={130}
+            style={{ width: "100%", height: "auto" }}
+            className="w-full h-auto max-h-full object-contain block drop-shadow-[0_8px_24px_rgba(255,0,82,0.35)] transition-transform duration-500 ease-in-out hover:scale-105"
             priority
           />
         </div>
 
-        {/* 3D Angled Pink Badge Sticker (Matching Reference) */}
-        <div className="w-full max-w-[320px] -mt-2 mb-4 flex justify-center">
-          <div className="inline-block transform -rotate-3 bg-[#FF0052] text-white font-display text-[18px] sm:text-[20px] tracking-widest font-black uppercase px-6 py-2 rounded-xl border-[3px] border-black shadow-[4px_4px_0px_#000000]">
-            CREATATHON 2026
-          </div>
-        </div>
-
-        {/* High-Contrast Sleek Progress Bar */}
-        <div className="w-[220px] mt-4">
+        {/* Minimal Progress Bar (Clean without text) */}
+        <div
+          className={`w-[260px] sm:w-[280px] mt-8 transition-all duration-700 ease-in-out ${
+            isExiting ? "opacity-0 translate-y-2 scale-95" : "opacity-100 translate-y-0 scale-100"
+          }`}
+        >
           <div className="w-full h-[6px] bg-black/15 rounded-full overflow-hidden border-[1.5px] border-black p-[1px]">
             <div
-              className="h-full bg-[#FF0052] rounded-full transition-all duration-150 ease-out shadow-[0_0_8px_#FF0052]"
+              className="h-full bg-[#FF0052] rounded-full transition-all duration-300 ease-in-out shadow-[0_0_10px_#FF0052]"
               style={{ width: `${progress}%` }}
             />
-          </div>
-
-          <div className="flex justify-between items-center mt-2.5 font-jetbrains text-[11px] font-extrabold uppercase text-[#18181B] tracking-wider">
-            <span>LOADING</span>
-            <span className="bg-black text-[#00D890] px-2 py-0.5 rounded text-[10px] font-mono">
-              {progress}%
-            </span>
           </div>
         </div>
       </div>

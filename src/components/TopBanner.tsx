@@ -25,6 +25,7 @@ export default function TopBanner() {
             alt="Creatathon Logo"
             width={174}
             height={54}
+            style={{ width: "auto", height: "auto" }}
             className="w-[174px] h-[54px] object-contain block"
             priority
           />

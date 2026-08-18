@@ -37,6 +37,7 @@ export default function BelongSection() {
           alt="Green Flower Blob"
           width={162}
           height={126}
+          style={{ width: "auto", height: "auto" }}
           className="w-full h-full object-contain block"
         />
       </div>

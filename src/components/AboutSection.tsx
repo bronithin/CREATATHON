@@ -51,6 +51,7 @@ export default function AboutSection() {
             alt="Green Flower Blob"
             width={138}
             height={138}
+            style={{ width: "auto", height: "auto" }}
             className="w-full h-full object-contain block"
           />
           {/* Cream 8-pointed star overlapping top-left of green flower blob */}
@@ -60,6 +61,7 @@ export default function AboutSection() {
               alt="Cream Star"
               width={96}
               height={105}
+              style={{ width: "auto", height: "auto" }}
               className="w-full h-full object-contain block"
             />
           </div>

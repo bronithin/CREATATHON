@@ -11,6 +11,7 @@ export default function CommunityFooter() {
           alt="Pink Flame Splash"
           width={162}
           height={215}
+          style={{ width: "auto", height: "auto" }}
           className="w-full h-full object-contain block drop-shadow-[0px_7px_0px_#FFFFFF]"
         />
       </div>
@@ -55,6 +56,7 @@ export default function CommunityFooter() {
             alt="Green Star"
             width={87}
             height={95}
+            style={{ width: "auto", height: "auto" }}
             className="w-full h-full object-contain block"
           />
         </div>

@@ -11,6 +11,7 @@ export default function EcosystemSection() {
           alt="Tile Green Blue"
           width={60}
           height={60}
+          style={{ width: "auto", height: "auto" }}
           className="w-full h-full object-contain block"
         />
       </div>
@@ -20,6 +21,7 @@ export default function EcosystemSection() {
           alt="Tile Pink Yellow"
           width={60}
           height={60}
+          style={{ width: "auto", height: "auto" }}
           className="w-full h-full object-contain block"
         />
       </div>
@@ -29,6 +31,7 @@ export default function EcosystemSection() {
           alt="Tile Blue Pink"
           width={51}
           height={52}
+          style={{ width: "auto", height: "auto" }}
           className="w-full h-full object-contain block"
         />
       </div>
