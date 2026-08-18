@@ -12,9 +12,12 @@ const LOADING_STEPS = [
 
 export default function LoadingScreen() {
   const [progress, setProgress] = useState(0);
-  const [stepIndex, setStepIndex] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+
+  // Derive stepIndex directly during render without extra setState
+  const stepIndex =
+    progress < 30 ? 0 : progress < 65 ? 1 : progress < 95 ? 2 : 3;
 
   useEffect(() => {
     // Fast, punchy loading progression (~1.4 seconds total)
@@ -34,14 +37,7 @@ export default function LoadingScreen() {
   }, []);
 
   useEffect(() => {
-    if (progress < 30) {
-      setStepIndex(0);
-    } else if (progress < 65) {
-      setStepIndex(1);
-    } else if (progress < 95) {
-      setStepIndex(2);
-    } else {
-      setStepIndex(3);
+    if (progress >= 100) {
       const exitTimer = setTimeout(() => {
         setIsExiting(true);
         const finishTimer = setTimeout(() => {

@@ -5,7 +5,6 @@ import React, { useState, useEffect } from "react";
 type TabType = "EXPLORE" | "CREATE" | "RANKS" | "WALLET";
 
 export default function BottomNav() {
-  const [activeTab, setActiveTab] = useState<TabType>("EXPLORE");
   const [comingSoonTab, setComingSoonTab] = useState<TabType | null>(null);
 
   // Close modal on Escape key press
@@ -21,7 +20,6 @@ export default function BottomNav() {
 
   const handleTabClick = (tab: TabType) => {
     if (tab === "EXPLORE") {
-      setActiveTab("EXPLORE");
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       setComingSoonTab(tab);
