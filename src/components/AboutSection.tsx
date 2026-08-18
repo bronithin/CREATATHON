@@ -26,8 +26,20 @@ export default function AboutSection() {
       {/* Middle Grid: Left Text + Right Green Scalloped Flower with Cream Star */}
       <div className="relative flex items-center justify-between pl-[25px] my-[10px] min-h-[145px]">
         {/* Left Column Copy */}
-        <div className="max-w-[215px] z-10">
-          <p className="font-sans font-medium text-[15.5px] leading-[1.18] tracking-tight text-[#FFD200] uppercase">
+        <div className="max-w-[270px] z-10">
+          <p
+            className="text-[#FFD200]"
+            style={{
+              fontFamily: "Halenoir, var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif",
+              fontWeight: 400,
+              fontStyle: "normal",
+              fontSize: "20px",
+              lineHeight: "120%",
+              letterSpacing: "-1px",
+              verticalAlign: "middle",
+              textTransform: "uppercase",
+            }}
+          >
             BRINGING TOGETHER
             <br />
             CREATORS, ARTISTS,

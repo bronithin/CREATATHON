@@ -3,30 +3,31 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative z-10 w-full h-[231px] text-white select-none overflow-visible">
-      {/* Blue Rotated Background matching exact Figma layout: W=402.65px, H=253.64px, Top=-22.71px, Rotation=3.23° with bleed to fill edges */}
+    <section className="relative z-10 w-full h-[265px] text-white select-none overflow-visible">
+      {/* Blue Rotated Background with increased size: W=462px, H=290px, Rotation=-3.23° */}
       <div
-        className="absolute top-0 -left-[30px] w-[462px] h-[254px] bg-[#0054D9] pointer-events-none z-0"
+        className="absolute top-0 -left-[30px] w-[462px] h-[290px] bg-[#0054D9] pointer-events-none z-0"
         style={{
           transform: "rotate(-3.23deg)",
           transformOrigin: "30px 0px",
         }}
       />
 
-      {/* Top Right Decorative Geometric Shape Tiles matching exact reference coordinates */}
-      {/* Tile 1: 60x60 green/blue tile at x=282, y=100 (top: 0, right: 60px) */}
+      {/* Top Right Decorative Geometric Shape Tiles matching Image 2 */}
+      {/* Tile 1: 60x60 green tile with red squiggle at top: 0, right: 60px */}
       <div className="absolute top-0 right-[60px] w-[60px] h-[60px] z-20 pointer-events-none">
         <Image
-          src="/elements/tile-green-blue.svg"
+          src="/elements/tile-green-red.svg"
           alt="Tile Accent"
           width={60}
           height={60}
           style={{ width: "auto", height: "auto" }}
           className="w-full h-full object-contain block"
+          priority
         />
       </div>
 
-      {/* Tile 2: 60x60 pink/yellow tile at x=342, y=133 (top: 33px, right: 0px) */}
+      {/* Tile 2: 60x60 red tile with yellow star at top: 33px, right: 0px */}
       <div className="absolute top-[33px] right-0 w-[60px] h-[60px] z-20 pointer-events-none">
         <Image
           src="/elements/tile-pink-yellow.svg"
@@ -35,44 +36,45 @@ export default function HeroSection() {
           height={60}
           style={{ width: "auto", height: "auto" }}
           className="w-full h-full object-contain block"
+          priority
         />
       </div>
 
-      {/* Main Hero Headline Text */}
-      <div className="relative z-10 w-full pt-[24px] pb-[20px] px-[25px]">
+      {/* Main Hero Headline Text matching Image 2 */}
+      <div className="relative z-10 w-full pt-[22px] pb-[16px] px-[24px]">
         <h1
-          className="font-anton font-normal text-[48px] leading-[120%] tracking-[1px] text-white uppercase max-w-[360px] flex flex-col"
+          className="font-anton font-normal text-[50px] leading-[110%] tracking-[0.5px] uppercase max-w-[360px] flex flex-col gap-[4px] select-none"
           style={{
             fontFamily: "var(--font-anton), Impact, sans-serif",
             fontWeight: 400,
-            fontSize: "48px",
-            lineHeight: "120%",
-            letterSpacing: "1px",
+            fontSize: "50px",
+            lineHeight: "110%",
+            letterSpacing: "0.5px",
             textTransform: "uppercase",
           }}
         >
-          <span>Kerala&apos;s</span>
+          <span className="text-white">KERALA&rsquo;S</span>
           <span>
-            Biggest{" "}
-            <span className="text-[#FCD60B]">
-              Creator
-            </span>
+            <span className="text-white">BIGGEST </span>
+            <span className="text-[#FFD200]">CREATOR</span>
           </span>
-          <span className="text-[#FCD60B]">Festival In Kochi.</span>
+          <span className="text-[#FFD200]">FESTIVAL IN KOCHI.</span>
         </h1>
       </div>
 
-      {/* Yellow Star Shape at bottom-left overlap boundary (Enlarged) */}
-      <div className="absolute top-[188px] left-0 w-[54px] h-[96px] z-30 pointer-events-none">
+      {/* Yellow Star Shape centered right on the blue/red seam with enlarged size */}
+      <div className="absolute top-[203px] left-0 w-[95px] h-[170px] z-30 pointer-events-none">
         <Image
           src="/elements/star-hero-yellow.svg"
           alt="Yellow Star Accent"
-          width={54}
-          height={96}
+          width={95}
+          height={170}
           style={{ width: "auto", height: "auto" }}
-          className="w-[54px] h-[96px] object-contain block"
+          className="w-[95px] h-[170px] object-contain block"
+          priority
         />
       </div>
     </section>
   );
 }
+

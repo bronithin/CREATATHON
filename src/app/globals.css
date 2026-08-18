@@ -80,6 +80,7 @@
   min-width: 100%;
   flex-shrink: 0;
   animation: marquee-scroll 18s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee-infinite:hover {
@@ -97,5 +98,11 @@
 
 .animate-spin-slow {
   animation: spin-slow 12s linear infinite;
+  will-change: transform;
 }
 
+/* Defer rendering off-screen DOM trees to speed up initial FCP/LCP */
+.render-deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}

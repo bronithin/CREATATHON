@@ -97,7 +97,6 @@ export default function MoreThanFestival() {
           alt="Creators Working Together in Studio Arch"
           width={390}
           height={260}
-          style={{ width: "auto", height: "auto" }}
           className="w-[390px] h-[260px] object-contain block"
           priority
         />

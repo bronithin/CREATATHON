@@ -7,8 +7,9 @@ type TabType = "EXPLORE" | "CREATE" | "RANKS" | "WALLET";
 export default function BottomNav() {
   const [comingSoonTab, setComingSoonTab] = useState<TabType | null>(null);
 
-  // Close modal on Escape key press
+  // Close modal on Escape key press only when modal is active
   useEffect(() => {
+    if (!comingSoonTab) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setComingSoonTab(null);
@@ -16,7 +17,7 @@ export default function BottomNav() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [comingSoonTab]);
 
   const handleTabClick = (tab: TabType) => {
     if (tab === "EXPLORE") {

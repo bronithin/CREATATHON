@@ -72,7 +72,7 @@ export default function FeatureCards() {
   ];
 
   return (
-    <section className="w-[402px] bg-[#FDF9EB] pt-[34px] pb-[44px] flex flex-col gap-[36px] items-center select-none overflow-hidden">
+    <section className="w-[402px] bg-[#FDF9EB] pt-[34px] pb-[44px] flex flex-col gap-[36px] items-center select-none overflow-hidden render-deferred">
       {cards.map((card, idx) => (
         <div
           key={idx}

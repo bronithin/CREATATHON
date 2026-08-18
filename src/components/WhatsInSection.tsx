@@ -42,7 +42,6 @@ export default function WhatsInSection() {
             height={68}
             style={{ width: "auto", height: "auto" }}
             className="w-[319px] h-[68px] object-contain block"
-            priority
           />
         </div>
       </div>

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function CommunityFooter() {
   return (
-    <footer className="relative w-[402px] min-h-[460px] bg-[#0054D9] text-white pt-[36px] pb-[100px] px-[25px] overflow-hidden select-none">
+    <footer className="relative w-[402px] min-h-[460px] bg-[#0054D9] text-white pt-[36px] pb-[100px] px-[25px] overflow-hidden select-none render-deferred">
       {/* Top Right Pink Flame Splash with White Drop Shadow */}
       <div className="absolute -top-[10px] -right-[20px] w-[162px] h-[215px] z-0 pointer-events-none opacity-95">
         <Image
