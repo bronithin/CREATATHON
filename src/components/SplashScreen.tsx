@@ -46,11 +46,6 @@ export default function SplashScreen() {
     }
   }, [progress]);
 
-  const handleSkip = () => {
-    setIsExiting(true);
-    setTimeout(() => setIsFinished(true), 600);
-  };
-
   if (isFinished) return null;
 
   return (
@@ -151,7 +146,7 @@ export default function SplashScreen() {
           </p>
 
           {/* Progress Bar Container */}
-          <div className="w-full mt-6 mb-2">
+          <div className="w-full mt-6 mb-1">
             <div className="flex items-center justify-between text-[10px] font-jetbrains font-bold uppercase text-[#18181B] mb-1.5">
               <span>{statusText}</span>
               <span>{progress}%</span>
@@ -164,15 +159,6 @@ export default function SplashScreen() {
               />
             </div>
           </div>
-
-          {/* Skip / Enter Button */}
-          <button
-            type="button"
-            onClick={handleSkip}
-            className="mt-4 px-4 py-1.5 bg-white text-[#18181B] border-[2px] border-black rounded-lg text-[11px] font-bold uppercase tracking-wider shadow-[2px_2px_0px_#000000] hover:bg-[#FFD200] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all cursor-pointer"
-          >
-            ENTER NOW ↵
-          </button>
         </div>
       </div>
 
