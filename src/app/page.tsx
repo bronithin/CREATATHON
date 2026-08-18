@@ -1,5 +1,5 @@
 import React from "react";
-import SplashScreen from "@/components/SplashScreen";
+import LoadingScreen from "@/components/LoadingScreen";
 import TopBanner from "@/components/TopBanner";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -17,8 +17,8 @@ import BottomNav from "@/components/BottomNav";
 export default function Home() {
   return (
     <>
-      {/* 0. Animated Splash Screen */}
-      <SplashScreen />
+      {/* 0. Animated Festival Loading Screen */}
+      <LoadingScreen />
 
       <main className="w-[402px] max-w-[402px] min-h-screen bg-[#FDF9EB] shadow-2xl border-x border-black/15 relative flex flex-col mx-auto overflow-x-hidden">
         {/* 1. Header with Red Announcement & Yellow Logo */}
