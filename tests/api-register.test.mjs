@@ -4,6 +4,15 @@ import assert from "node:assert/strict";
 const BASE_URL = process.env.TEST_BASE_URL || "http://localhost:3000";
 
 test("Registration System Security & Validation Integration Suite", async (t) => {
+  const isServerRunning = await fetch(`${BASE_URL}/`, { method: "HEAD", signal: AbortSignal.timeout(600) })
+    .then(() => true)
+    .catch(() => false);
+
+  if (!isServerRunning) {
+    t.skip(`Live server is not reachable at ${BASE_URL}. Start dev server to run live integration tests.`);
+    return;
+  }
+
   await t.test("1. POST /api/register - Valid registration", async () => {
     const payload = {
       tab: "influencer",

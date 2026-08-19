@@ -3,7 +3,16 @@ import assert from "node:assert/strict";
 
 const BASE_URL = process.env.TEST_BASE_URL || "http://localhost:3000";
 
-test("Live Rate Limiting Protection Test", async () => {
+test("Live Rate Limiting Protection Test", async (t) => {
+  const isServerRunning = await fetch(`${BASE_URL}/`, { method: "HEAD", signal: AbortSignal.timeout(600) })
+    .then(() => true)
+    .catch(() => false);
+
+  if (!isServerRunning) {
+    t.skip(`Live server is not reachable at ${BASE_URL}. Start dev server to run live rate limit tests.`);
+    return;
+  }
+
   // Use a custom IP header or sequential requests to verify 429 on exhaustion
   const results = [];
   const testIp = "203.0.113." + Math.floor(Math.random() * 200 + 1);

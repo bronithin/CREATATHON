@@ -5,7 +5,8 @@
  * - GOOGLE_SHEET_URL
  * - GOOGLE_SHEET_ID
  * - GOOGLE_SHEET_WEBHOOK_URL
- * - ADMIN_MAIL
+ * - GOOGLE_SHEET_WEBHOOK_SECRET / WEBHOOK_SECRET
+ * - ADMIN_MAIL / ADMIN_EMAIL
  */
 
 function extractSheetId(urlOrId: string): string {
@@ -35,8 +36,19 @@ export const GOOGLE_SHEET_CONFIG = {
   },
 
   /**
+   * Shared secret for authenticating with Google Apps Script doPost webhook
+   */
+  get webhookSecret(): string {
+    return (
+      process.env.GOOGLE_SHEET_WEBHOOK_SECRET?.trim() ||
+      process.env.WEBHOOK_SECRET?.trim() ||
+      ""
+    );
+  },
+
+  /**
    * Administrator recipient email for registration alerts.
-   * Must be explicitly configured in server environment.
+   * Configured on the server side / Apps Script properties.
    */
   get adminMail(): string {
     return (
@@ -53,3 +65,4 @@ export const GOOGLE_SHEET_CONFIG = {
     return Boolean(this.webhookUrl && this.webhookUrl.length > 0);
   },
 };
+

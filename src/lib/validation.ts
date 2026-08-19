@@ -28,15 +28,19 @@ export const REGEX_PATTERNS = {
     /^(https?:\/\/)?((([a-zA-Z0-9]([a-zA-Z0-9\-]*[a-zA-Z0-9])?\.)+[a-zA-Z]{2,})|(@[a-zA-Z0-9_.]{2,30}))(\/[^\s<>"']*)?$/i,
 };
 
+// Dangerous URL schemes
+const DANGEROUS_SCHEMES = /^(javascript|data|vbscript|file|blob):/i;
+
 /**
  * Sanitize user input by trimming and stripping HTML/control characters
  */
-export function sanitizeInput(value: unknown): string {
+export function sanitizeInput(value: unknown, maxLength: number = 500): string {
   if (typeof value !== "string") return "";
   return value
     .replace(/[\x00-\x1F\x7F]/g, "") // Strip control characters
     .replace(/<[^>]*>?/gm, "") // Strip HTML tags
-    .trim();
+    .trim()
+    .slice(0, maxLength);
 }
 
 export interface RegistrationInput {
@@ -55,25 +59,72 @@ export interface ValidationResult {
   sanitizedData: Omit<RegistrationInput, "hp_website">;
 }
 
+const ALLOWED_KEYS = new Set([
+  "tab",
+  "name",
+  "location",
+  "socialLink",
+  "followerCount",
+  "hp_website",
+]);
+
+const PROTOTYPE_POLLUTION_KEYS = new Set([
+  "__proto__",
+  "constructor",
+  "prototype",
+]);
+
 /**
  * Comprehensive validation function for registration payloads
  */
-export function validateRegistration(data: Partial<RegistrationInput>): ValidationResult {
+export function validateRegistration(data: unknown): ValidationResult {
   const errors: Record<string, string> = {};
 
+  if (!data || typeof data !== "object" || Array.isArray(data)) {
+    return {
+      isValid: false,
+      isBot: false,
+      errors: { payload: "Invalid request payload format." },
+      sanitizedData: {
+        tab: "influencer",
+        name: "",
+        location: "",
+        socialLink: "",
+        followerCount: "Under 10k",
+      },
+    };
+  }
+
+  const record = data as Record<string, unknown>;
+
+  // Check for prototype pollution attempts or unknown fields
+  for (const key of Object.keys(record)) {
+    if (PROTOTYPE_POLLUTION_KEYS.has(key)) {
+      errors.security = "Malicious payload detected.";
+      break;
+    }
+    if (!ALLOWED_KEYS.has(key)) {
+      errors[key] = `Unexpected field: ${key}`;
+    }
+  }
+
   // Honeypot check - if populated, mark as bot
-  const honeypot = sanitizeInput(data.hp_website);
+  const honeypot = sanitizeInput(record.hp_website, 200);
   const isBot = Boolean(honeypot && honeypot.length > 0);
 
-  const tab = data.tab === "brand" ? "brand" : data.tab === "influencer" ? "influencer" : undefined;
-  if (!tab) {
+  // Tab validation
+  const rawTab = record.tab;
+  let tab: "influencer" | "brand" | undefined;
+  if (rawTab === "brand" || rawTab === "influencer") {
+    tab = rawTab;
+  } else {
     errors.tab = "Invalid registration type. Must be either 'influencer' or 'brand'.";
   }
 
-  const name = sanitizeInput(data.name);
-  const location = sanitizeInput(data.location);
-  const socialLink = sanitizeInput(data.socialLink);
-  let followerCount = sanitizeInput(data.followerCount);
+  const name = sanitizeInput(record.name, 100);
+  const location = sanitizeInput(record.location, 100);
+  const socialLink = sanitizeInput(record.socialLink, 255);
+  let followerCount = sanitizeInput(record.followerCount, 50);
 
   // 1. Name / Handle validation
   if (!name) {
@@ -106,6 +157,8 @@ export function validateRegistration(data: Partial<RegistrationInput>): Validati
     errors.socialLink = tab === "brand" ? "Website or social link is required." : "Primary social link is required.";
   } else if (socialLink.length < 3 || socialLink.length > 255) {
     errors.socialLink = "Link must be between 3 and 255 characters.";
+  } else if (DANGEROUS_SCHEMES.test(socialLink)) {
+    errors.socialLink = "Invalid URL scheme provided.";
   } else if (!REGEX_PATTERNS.SOCIAL_LINK.test(socialLink)) {
     errors.socialLink =
       "Please enter a valid social link or website (e.g. instagram.com/username or https://brand.com).";
@@ -131,3 +184,4 @@ export function validateRegistration(data: Partial<RegistrationInput>): Validati
     },
   };
 }
+

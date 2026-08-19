@@ -8,6 +8,7 @@ test("Unit Test: Input Sanitization", () => {
   assert.equal(sanitizeInput("Line\x00Break\x1FTest"), "LineBreakTest");
   assert.equal(sanitizeInput(null), "");
   assert.equal(sanitizeInput(undefined), "");
+  assert.equal(sanitizeInput("A".repeat(600), 500).length, 500);
 });
 
 test("Unit Test: Influencer Registration Validation", () => {
@@ -104,3 +105,52 @@ test("Unit Test: Anti-Bot Honeypot Detection", () => {
   });
   assert.equal(humanResult.isBot, false);
 });
+
+test("Unit Test: Security & Abuse Protection", () => {
+  // 1. Dangerous URL schemes
+  const xssScheme = validateRegistration({
+    tab: "influencer",
+    name: "@hacker",
+    location: "Cyber City",
+    socialLink: "javascript:alert(document.cookie)",
+    followerCount: "Under 10k",
+  });
+  assert.equal(xssScheme.isValid, false);
+  assert.ok(xssScheme.errors.socialLink);
+
+  const dataScheme = validateRegistration({
+    tab: "influencer",
+    name: "@hacker",
+    location: "Cyber City",
+    socialLink: "data:text/html,<script>alert(1)</script>",
+    followerCount: "Under 10k",
+  });
+  assert.equal(dataScheme.isValid, false);
+  assert.ok(dataScheme.errors.socialLink);
+
+  // 2. Extra unexpected fields
+  const extraFields = validateRegistration({
+    tab: "influencer",
+    name: "@creator",
+    location: "Kochi",
+    socialLink: "https://instagram.com/creator",
+    followerCount: "Under 10k",
+    adminEmail: "attacker@pwned.com",
+    role: "admin",
+  });
+  assert.equal(extraFields.isValid, false);
+  assert.ok(extraFields.errors.adminEmail);
+  assert.ok(extraFields.errors.role);
+
+  // 3. Prototype pollution keys
+  const protoPayload = JSON.parse('{"__proto__":{"polluted":true},"tab":"influencer","name":"@test","location":"Kochi","socialLink":"https://instagram.com/test"}');
+  const protoResult = validateRegistration(protoPayload);
+  assert.equal(protoResult.isValid, false);
+
+  // 4. Non-object or array payloads
+  assert.equal(validateRegistration(null).isValid, false);
+  assert.equal(validateRegistration([]).isValid, false);
+  assert.equal(validateRegistration("string").isValid, false);
+  assert.equal(validateRegistration(12345).isValid, false);
+});
+
