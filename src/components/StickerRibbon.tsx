@@ -1,47 +1,35 @@
 import React from "react";
-import Image from "next/image";
 
 export default function StickerRibbon() {
   return (
-    <div className="w-full h-[52px] md:h-[64px] lg:h-[70px] select-none overflow-hidden flex items-center justify-center bg-white border-y-2 border-black/80">
-      {/* Mobile single ribbon view */}
-      <div className="flex md:hidden w-full max-w-[402px] h-[52px] shrink-0 items-center justify-center overflow-hidden">
-        <Image
-          src="/elements/sticker-ribbon.svg"
-          alt="Creatathon Stickers Strip"
-          width={402}
-          height={52}
-          style={{ width: "100%", height: "auto" }}
-          className="object-cover block max-w-full"
-          priority
-        />
-      </div>
-
-      {/* Desktop repeating marquee ribbon */}
-      <div className="hidden md:flex w-full overflow-hidden items-center">
+    <div className="w-full h-[52px] md:h-[64px] lg:h-[70px] select-none overflow-hidden flex items-center bg-white border-y-2 border-black/80">
+      {/* Repeating marquee ribbon */}
+      <div className="flex w-full overflow-hidden items-center">
         <div className="flex shrink-0 animate-marquee-infinite items-center">
           {[1, 2, 3, 4, 5].map((i) => (
-            <Image
+            <img
               key={`r1-${i}`}
               src="/elements/sticker-ribbon.svg"
               alt="Creatathon Stickers Strip"
               width={402}
               height={52}
-              style={{ width: "auto", height: "auto" }}
-              className="h-[60px] lg:h-[68px] w-auto object-contain block shrink-0"
+              className="h-[52px] md:h-[64px] lg:h-[70px] w-auto object-contain block shrink-0"
+              loading={i <= 2 ? "eager" : "lazy"}
+              decoding="async"
             />
           ))}
         </div>
         <div className="flex shrink-0 animate-marquee-infinite items-center" aria-hidden="true">
           {[1, 2, 3, 4, 5].map((i) => (
-            <Image
+            <img
               key={`r2-${i}`}
               src="/elements/sticker-ribbon.svg"
-              alt="Creatathon Stickers Strip"
+              alt=""
               width={402}
               height={52}
-              style={{ width: "auto", height: "auto" }}
-              className="h-[60px] lg:h-[68px] w-auto object-contain block shrink-0"
+              className="h-[52px] md:h-[64px] lg:h-[70px] w-auto object-contain block shrink-0"
+              loading="lazy"
+              decoding="async"
             />
           ))}
         </div>
@@ -49,3 +37,4 @@ export default function StickerRibbon() {
     </div>
   );
 }
+
