@@ -28,8 +28,7 @@ test("Registration System Security & Validation Integration Suite", async (t) =>
     const json = await res.json();
     if (res.status === 200) {
       assert.equal(json.success, true);
-      assert.ok(json.registrationId, "Expected registrationId in response");
-      assert.ok(json.registrationId.startsWith("CRT"), `Expected CRT prefix, got ${json.registrationId}`);
+      assert.ok(json.record, "Expected record in response");
     }
   });
 

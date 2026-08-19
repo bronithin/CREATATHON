@@ -41,7 +41,6 @@ function testAdminEmail() {
   }
   sendAdminNotificationEmail(
     {
-      registrationId: "CRT1000",
       timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
       type: "Influencer",
       name: "@test_creator_sample",
@@ -70,8 +69,6 @@ function doPost(e) {
     }
 
     var allSheet = ss.getSheetByName("All Registrations") || ss.getActiveSheet();
-    var fallbackId = "CRT" + (1000 + (allSheet.getLastRow() > 0 ? allSheet.getLastRow() : 0));
-    var registrationId = sanitize(data["Registration ID"] || data.id) || fallbackId;
 
     var timestamp = sanitize(data.Timestamp) || new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
     var type = sanitize(data.Type);
@@ -105,12 +102,12 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
 
-    var row = [registrationId, timestamp, type, name, location, socialLink, followers];
+    var row = [timestamp, type, name, location, socialLink, followers];
 
     // 1. Master Sheet: All Registrations
     if (allSheet.getLastRow() === 0) {
-      allSheet.appendRow(["Registration ID", "Timestamp", "Type", "Name / Brand", "Location", "Social Link / Website", "Audience / Followers"]);
-      allSheet.getRange(1, 1, 1, 7).setFontWeight("bold").setBackground("#FFD200");
+      allSheet.appendRow(["Timestamp", "Type", "Name / Brand", "Location", "Social Link / Website", "Audience / Followers"]);
+      allSheet.getRange(1, 1, 1, 6).setFontWeight("bold").setBackground("#FFD200");
     }
     allSheet.appendRow(row);
 
@@ -119,8 +116,8 @@ function doPost(e) {
     var targetSheet = ss.getSheetByName(targetSheetName);
     if (!targetSheet) {
       targetSheet = ss.insertSheet(targetSheetName);
-      targetSheet.appendRow(["Registration ID", "Timestamp", "Type", "Name / Brand", "Location", "Social Link / Website", "Audience / Followers"]);
-      targetSheet.getRange(1, 1, 1, 7).setFontWeight("bold").setBackground(type === "Brand" ? "#FF0052" : "#0054D9").setFontColor("#FFFFFF");
+      targetSheet.appendRow(["Timestamp", "Type", "Name / Brand", "Location", "Social Link / Website", "Audience / Followers"]);
+      targetSheet.getRange(1, 1, 1, 6).setFontWeight("bold").setBackground(type === "Brand" ? "#FF0052" : "#0054D9").setFontColor("#FFFFFF");
     }
     targetSheet.appendRow(row);
 
@@ -130,7 +127,6 @@ function doPost(e) {
     try {
       sendAdminNotificationEmail(
         {
-          registrationId: registrationId,
           timestamp: timestamp,
           type: type,
           name: name,
@@ -151,7 +147,6 @@ function doPost(e) {
       JSON.stringify({
         result: "success",
         status: "success",
-        registrationId: registrationId,
         row: row,
         emailSent: emailSent,
         emailError: emailError,
@@ -168,15 +163,15 @@ function doPost(e) {
 }
 
 /**
- * Sends a rich, responsive HTML email notification to the Admin
+ * Sends a rich, responsive Neo-Brutalist HTML email notification to the Admin
  */
 function sendAdminNotificationEmail(record, adminEmail, sheetUrl) {
   if (!adminEmail) return;
 
   var isBrand = record.type === "Brand";
-  var typeColor = isBrand ? "#FF0052" : "#0054D9";
-  var typeBadgeBg = isBrand ? "#FFE5EC" : "#E8F1FF";
-  var subject = "🔥 [Creatathon 2026] [" + record.registrationId + "] New " + record.type + " Registration: " + record.name;
+  var badgeColor = isBrand ? "#FF0052" : "#0054D9";
+  var badgeText = isBrand ? "🏢 BRAND / COMPANY" : "✨ CREATOR / INFLUENCER";
+  var subject = "🔥 [Creatathon 2026] New " + record.type + ": " + record.name;
 
   var socialHref = record.socialLink;
   if (!socialHref.startsWith("http://") && !socialHref.startsWith("https://")) {
@@ -195,121 +190,125 @@ function sendAdminNotificationEmail(record, adminEmail, sheetUrl) {
     '  <meta name="viewport" content="width=device-width, initial-scale=1.0">' +
     '  <title>New Registration - Creatathon 2026</title>' +
     '</head>' +
-    '<body style="margin: 0; padding: 0; background-color: #F4F4F5; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Helvetica, Arial, sans-serif; color: #18181B;">' +
-    '  <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 30px auto; background-color: #FFFFFF; border: 3px solid #18181B; border-radius: 16px; overflow: hidden; box-shadow: 6px 6px 0px #18181B;">' +
-    '    <!-- Header -->' +
+    '<body style="margin: 0; padding: 24px 12px; background-color: #F6F3E7; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Helvetica, Arial, sans-serif; color: #18181B; -webkit-font-smoothing: antialiased;">' +
+    '  <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 560px; margin: 0 auto; background-color: #FFFFFF; border: 3px solid #18181B; border-radius: 18px; overflow: hidden; box-shadow: 6px 6px 0px #18181B;">' +
+    
+    '    <!-- 1. Top Pink Festival Marquee Bar -->' +
     '    <tr>' +
-    '      <td style="background-color: #0054D9; padding: 28px 24px; text-align: center; border-bottom: 3px solid #18181B;">' +
-    '        <span style="color: #FFD200; font-size: 13px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 6px;">' +
-    '          CREATATHON 2026' +
+    '      <td style="background-color: #FF0052; padding: 8px 16px; text-align: center; border-bottom: 2px solid #18181B;">' +
+    '        <span style="color: #FFFFFF; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; display: inline-block;">' +
+    '          🎪 KERALA\'S FIRST CREATOR FESTIVAL &bull; KOCHI 2026' +
     '        </span>' +
-    '        <h1 style="color: #FFFFFF; font-size: 24px; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">' +
-    '          New Registration Received! 🚀' +
+    '      </td>' +
+    '    </tr>' +
+
+    '    <!-- 2. Hero Yellow Banner -->' +
+    '    <tr>' +
+    '      <td style="background-color: #FCD60B; padding: 26px 20px 22px 20px; text-align: center; border-bottom: 3px solid #18181B;">' +
+    '        <div style="display: inline-block; background-color: #18181B; color: #FCD60B; font-size: 11px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 6px; margin-bottom: 8px;">' +
+    '          ⚡ ADMIN DISPATCH ⚡' +
+    '        </div>' +
+    '        <h1 style="color: #18181B; font-size: 26px; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.1;">' +
+    '          NEW REGISTRATION RECEIVED!' +
     '        </h1>' +
     '      </td>' +
     '    </tr>' +
-    '    <!-- Content -->' +
+
+    '    <!-- 3. Main Content Area -->' +
     '    <tr>' +
-    '      <td style="padding: 28px 24px;">' +
-    '        <!-- Badge -->' +
-    '        <div style="text-align: center; margin-bottom: 20px;">' +
-    '          <span style="display: inline-block; padding: 6px 16px; background-color: ' + typeBadgeBg + '; color: ' + typeColor + '; border: 2px solid ' + typeColor + '; border-radius: 20px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">' +
-    (isBrand ? '🏢 Brand / Company' : '✨ Creator / Influencer') +
+    '      <td style="padding: 24px 20px 20px 20px;">' +
+
+    '        <!-- Type Badge -->' +
+    '        <div style="text-align: center; margin-bottom: 16px;">' +
+    '          <span style="display: inline-block; padding: 6px 16px; background-color: ' + badgeColor + '; color: #FFFFFF; border: 2px solid #18181B; border-radius: 999px; font-size: 12px; font-weight: 800; letter-spacing: 1px; box-shadow: 2px 2px 0px #18181B;">' +
+    badgeText +
     '          </span>' +
     '        </div>' +
-    '        <p style="font-size: 15px; line-height: 1.5; color: #3F3F46; text-align: center; margin: 0 0 24px 0;">' +
-    '          A new registration has arrived for <strong>Creatathon 2026</strong>. Here are the participant details:' +
-    '        </p>' +
-    '        <!-- Details Box -->' +
-    '        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FDF9EB; border: 2px solid #18181B; border-radius: 12px; margin-bottom: 24px;">' +
+
+    '        <!-- Participant Details Card -->' +
+    '        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FFFDF5; border: 2.5px solid #18181B; border-radius: 14px; box-shadow: 4px 4px 0px #18181B; margin-bottom: 22px;">' +
     '          <tr>' +
-    '            <td style="padding: 16px 20px;">' +
-    '              <table border="0" cellpadding="8" cellspacing="0" width="100%" style="font-size: 14px;">' +
-    '                <tr>' +
-    '                  <td width="38%" style="color: #71717A; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px dashed #E4E4E7;">' +
-    '                    Registration ID' +
-    '                  </td>' +
-    '                  <td style="font-weight: 900; color: #FF0052; font-size: 16px; border-bottom: 1px dashed #E4E4E7; font-family: monospace;">' +
-    record.registrationId +
-    '                  </td>' +
-    '                </tr>' +
-    '                <tr>' +
-    '                  <td style="color: #71717A; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px dashed #E4E4E7;">' +
-    (isBrand ? 'Company Name' : 'Creator / Handle') +
-    '                  </td>' +
-    '                  <td style="font-weight: 800; color: #18181B; font-size: 15px; border-bottom: 1px dashed #E4E4E7;">' +
+    '            <td style="padding: 18px 20px;">' +
+
+    '              <!-- Name Header -->' +
+    '              <div style="border-bottom: 2px dashed #E4E4E7; padding-bottom: 12px; margin-bottom: 12px;">' +
+    '                <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #71717A; display: block; margin-bottom: 2px;">' +
+    (isBrand ? 'BRAND / COMPANY NAME' : 'CREATOR HANDLE') +
+    '                </span>' +
+    '                <span style="font-size: 20px; font-weight: 900; color: #18181B; display: block; word-break: break-word;">' +
     record.name +
-    '                  </td>' +
-    '                </tr>' +
+    '                </span>' +
+    '              </div>' +
+
+    '              <!-- Detail Rows -->' +
+    '              <table border="0" cellpadding="6" cellspacing="0" width="100%" style="font-size: 13px;">' +
     '                <tr>' +
-    '                  <td style="color: #71717A; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px dashed #E4E4E7;">' +
-    '                    Category' +
+    '                  <td width="35%" style="color: #71717A; font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">' +
+    '                    📍 Location' +
     '                  </td>' +
-    '                  <td style="font-weight: 700; color: ' + typeColor + '; border-bottom: 1px dashed #E4E4E7;">' +
-    record.type +
-    '                  </td>' +
-    '                </tr>' +
-    '                <tr>' +
-    '                  <td style="color: #71717A; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px dashed #E4E4E7;">' +
-    '                    Location' +
-    '                  </td>' +
-    '                  <td style="font-weight: 600; color: #18181B; border-bottom: 1px dashed #E4E4E7;">' +
+    '                  <td style="font-weight: 700; color: #18181B;">' +
     record.location +
     '                  </td>' +
     '                </tr>' +
     '                <tr>' +
-    '                  <td style="color: #71717A; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px dashed #E4E4E7;">' +
-    '                    Social / Website' +
+    '                  <td style="color: #71717A; font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">' +
+    (isBrand ? '🎯 Audience Reach' : '👥 Follower Tier') +
     '                  </td>' +
-    '                  <td style="font-weight: 600; color: #0054D9; border-bottom: 1px dashed #E4E4E7; word-break: break-all;">' +
-    '                    <a href="' + socialHref + '" target="_blank" style="color: #0054D9; text-decoration: underline;">' +
-    record.socialLink +
+    '                  <td style="font-weight: 700; color: #18181B;">' +
+    '                    <span style="display: inline-block; background-color: #FCD60B; color: #18181B; padding: 2px 8px; border: 1.5px solid #18181B; border-radius: 6px; font-size: 12px; font-weight: 800;">' +
+    record.followers +
+    '                    </span>' +
+    '                  </td>' +
+    '                </tr>' +
+    '                <tr>' +
+    '                  <td style="color: #71717A; font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">' +
+    '                    🔗 Profile / Link' +
+    '                  </td>' +
+    '                  <td style="font-weight: 700; word-break: break-all;">' +
+    '                    <a href="' + socialHref + '" target="_blank" style="color: #0054D9; text-decoration: underline; font-weight: 800;">' +
+    record.socialLink + ' &rarr;' +
     '                    </a>' +
     '                  </td>' +
     '                </tr>' +
     '                <tr>' +
-    '                  <td style="color: #71717A; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px dashed #E4E4E7;">' +
-    (isBrand ? 'Target Audience' : 'Follower Count') +
+    '                  <td style="color: #71717A; font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">' +
+    '                    🕒 Submitted At' +
     '                  </td>' +
-    '                  <td style="font-weight: 700; color: #18181B; border-bottom: 1px dashed #E4E4E7;">' +
-    record.followers +
-    '                  </td>' +
-    '                </tr>' +
-    '                <tr>' +
-    '                  <td style="color: #71717A; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">' +
-    '                    Registered At' +
-    '                  </td>' +
-    '                  <td style="font-weight: 600; color: #52525B;">' +
+    '                  <td style="font-weight: 600; color: #52525B; font-size: 12px;">' +
     record.timestamp +
     '                  </td>' +
     '                </tr>' +
     '              </table>' +
+
     '            </td>' +
     '          </tr>' +
     '        </table>' +
-    '        <!-- Action Button -->' +
-    '        <div style="text-align: center; margin: 24px 0 10px 0;">' +
-    '          <a href="' + sheetUrl + '" target="_blank" style="display: inline-block; background-color: #FFD300; color: #18181B; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 12px 24px; text-decoration: none; border-radius: 30px; border: 2px solid #18181B; box-shadow: 3px 3px 0px #18181B;">' +
-    '            📊 Open Google Sheet &rarr;' +
+
+    '        <!-- Primary CTA Button -->' +
+    '        <div style="text-align: center; margin: 10px 0 14px 0;">' +
+    '          <a href="' + sheetUrl + '" target="_blank" style="display: inline-block; background-color: #FCD60B; color: #18181B; font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; padding: 14px 28px; text-decoration: none; border-radius: 12px; border: 2.5px solid #18181B; box-shadow: 4px 4px 0px #18181B;">' +
+    '            📊 OPEN GOOGLE SHEET &rarr;' +
     '          </a>' +
     '        </div>' +
+
     '      </td>' +
     '    </tr>' +
-    '    <!-- Footer -->' +
+
+    '    <!-- 4. Footer -->' +
     '    <tr>' +
-    '      <td style="background-color: #F4F4F5; padding: 16px 24px; text-align: center; border-top: 2px solid #E4E4E7;">' +
-    '        <p style="font-size: 12px; color: #71717A; margin: 0;">' +
-    '          Creatathon 2026 Admin Notification &bull; ID: ' + record.registrationId +
+    '      <td style="background-color: #F6F3E7; padding: 14px 16px; text-align: center; border-top: 2.5px solid #18181B;">' +
+    '        <p style="font-size: 11px; font-weight: 700; color: #71717A; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">' +
+    '          CREATATHON 2026 &bull; KOCHI, KERALA &bull; ADMIN NOTIFICATION' +
     '        </p>' +
     '      </td>' +
     '    </tr>' +
+
     '  </table>' +
     '</body>' +
     '</html>';
 
   var plainBody =
     "🚀 NEW CREATATHON 2026 REGISTRATION\n\n" +
-    "Registration ID: " + record.registrationId + "\n" +
     "Type: " + record.type + "\n" +
     "Name / Brand: " + record.name + "\n" +
     "Location: " + record.location + "\n" +

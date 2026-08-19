@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { GOOGLE_SHEET_CONFIG } from "@/config/sheet";
 import { validateRegistration } from "@/lib/validation";
 import { getClientIp, checkRateLimit, isDuplicateSubmission } from "@/lib/rateLimit";
-import { generateRegistrationId } from "@/lib/registrationId";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -10,7 +9,6 @@ export const runtime = "nodejs";
 const MAX_PAYLOAD_BYTES = 32 * 1024; // 32 KB safety threshold
 
 interface RegistrationRecord {
-  "Registration ID": string;
   Timestamp: string;
   Type: "Influencer" | "Brand";
   "Name / Brand": string;
@@ -20,7 +18,6 @@ interface RegistrationRecord {
 }
 
 interface RegistrationPayload extends RegistrationRecord {
-  id?: string;
   adminEmail?: string;
 }
 
@@ -84,7 +81,7 @@ async function syncToGoogleSheet(
   }
 }
 
-// POST: Rate-limited, spam-protected, validated registration submission with unique CRT ID
+// POST: Rate-limited, spam-protected, validated registration submission
 export async function POST(req: NextRequest) {
   try {
     // 1. Production-Safe Rate Limiting by Client IP (5 requests / 10 min window)
@@ -138,13 +135,11 @@ export async function POST(req: NextRequest) {
     // 3. Validation, Sanitization, and Anti-Bot Honeypot Check
     const validation = validateRegistration(rawBody as Record<string, unknown>);
 
-    // Honeypot tripped: silently return success with a generated CRT ID without invoking Google Apps Script
+    // Honeypot tripped: silently return success without invoking Google Apps Script
     if (validation.isBot) {
-      const honeypotId = generateRegistrationId();
       return NextResponse.json({
         success: true,
         message: "Registration received successfully.",
-        registrationId: honeypotId,
       });
     }
 
@@ -168,7 +163,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({
         success: true,
         message: "Registration already received.",
-        registrationId: generateRegistrationId(),
       });
     }
 
@@ -193,10 +187,7 @@ export async function POST(req: NextRequest) {
       timeStyle: "medium",
     });
 
-    const registrationId = generateRegistrationId();
-
     const newRecord: RegistrationRecord = {
-      "Registration ID": registrationId,
       Timestamp: timestamp,
       Type: tab === "brand" ? "Brand" : "Influencer",
       "Name / Brand": name,
@@ -209,7 +200,6 @@ export async function POST(req: NextRequest) {
     const syncResult = await syncToGoogleSheet(
       {
         ...newRecord,
-        id: registrationId,
         ...(adminEmail ? { adminEmail } : {}),
       },
       webhookUrl
@@ -228,7 +218,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       message: "Registration saved successfully.",
-      registrationId,
       record: newRecord,
     });
   } catch {

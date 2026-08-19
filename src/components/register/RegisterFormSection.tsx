@@ -35,7 +35,6 @@ export default function RegisterFormSection({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [registrationId, setRegistrationId] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -91,7 +90,6 @@ export default function RegisterFormSection({
 
       const data = await res.json();
       if (res.ok && data.success) {
-        setRegistrationId(data.registrationId || data.record?.["Registration ID"] || "CRT1000");
         setShowSuccess(true);
       } else {
         if (data.errors && typeof data.errors === "object") {
@@ -109,7 +107,6 @@ export default function RegisterFormSection({
   const handleCloseSuccess = () => {
     setShowSuccess(false);
     setSubmitError(null);
-    setRegistrationId(null);
     setFormData({
       name: "",
       location: "",
@@ -419,7 +416,6 @@ export default function RegisterFormSection({
         isOpen={showSuccess}
         onClose={handleCloseSuccess}
         tab={tab}
-        registrationId={registrationId || undefined}
         formData={formData}
       />
     </>

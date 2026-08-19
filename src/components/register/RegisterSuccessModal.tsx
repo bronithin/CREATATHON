@@ -8,7 +8,6 @@ interface RegisterSuccessModalProps {
   isOpen: boolean;
   onClose: () => void;
   tab: "influencer" | "brand";
-  registrationId?: string;
   formData: {
     name: string;
     location: string;
@@ -21,7 +20,6 @@ export default function RegisterSuccessModal({
   isOpen,
   onClose,
   tab,
-  registrationId,
   formData,
 }: RegisterSuccessModalProps) {
   useEffect(() => {
@@ -57,19 +55,7 @@ export default function RegisterSuccessModal({
           YOU&apos;RE IN THE MIX!
         </h3>
 
-        {/* Highlighted Registration ID Card */}
-        {registrationId && (
-          <div className="w-full bg-[#FFD200] border-[2px] border-black rounded-xl py-2 px-3 my-3 flex items-center justify-between shadow-[3px_3px_0px_#000000]">
-            <span className="font-jetbrains text-[11px] font-bold text-black/80">
-              REGISTRATION ID:
-            </span>
-            <span className="font-anton text-[20px] text-[#FF0052] tracking-wider leading-none">
-              {registrationId}
-            </span>
-          </div>
-        )}
-
-        <p className="text-[13px] leading-[1.4] text-[#18181B]/85 font-medium mt-1 mb-4">
+        <p className="text-[13px] leading-[1.4] text-[#18181B]/85 font-medium mt-3 mb-4">
           Thank you for registering as a{" "}
           <strong className="text-[#0054D9] uppercase font-jetbrains font-bold">
             {tab}
@@ -81,12 +67,6 @@ export default function RegisterSuccessModal({
 
         {/* Info Box */}
         <div className="w-full bg-white p-3.5 rounded-xl border-[1.5px] border-black/20 text-left text-xs text-[#27272A] space-y-1 mb-5 font-jetbrains">
-          {registrationId && (
-            <div className="flex justify-between pb-1 border-b border-black/10">
-              <span className="text-black/60">ID:</span>
-              <span className="font-bold text-[#FF0052]">{registrationId}</span>
-            </div>
-          )}
           <div className="flex justify-between">
             <span className="text-black/60">HANDLE:</span>
             <span className="font-bold">{formData.name}</span>
