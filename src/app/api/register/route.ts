@@ -86,7 +86,7 @@ async function syncToGoogleSheet(
     if (!res.ok) {
       return {
         success: false,
-        error: "Google Sheet service returned an unexpected status code.",
+        error: "Registration service is temporarily busy. Please try again in a few moments.",
       };
     }
 
@@ -101,7 +101,7 @@ async function syncToGoogleSheet(
     if (data && (data.result === "error" || data.status === "error" || data.status === "unauthorized")) {
       return {
         success: false,
-        error: "Failed to authenticate or process with Google Sheet service.",
+        error: "Unable to save your registration right now. Please try again in a few moments.",
       };
     }
 
@@ -112,11 +112,12 @@ async function syncToGoogleSheet(
     return {
       success: false,
       error: isTimeout
-        ? "Registration service timed out while saving. Please try again."
-        : "Failed to connect to registration service.",
+        ? "Registration request timed out. Please check your internet connection and try again."
+        : "Unable to connect to the registration service. Please try again in a few moments.",
     };
   }
 }
+
 
 // Method Not Allowed handler for non-POST HTTP methods
 function methodNotAllowed() {
@@ -158,7 +159,7 @@ export async function POST(req: NextRequest) {
     const contentType = req.headers.get("content-type") || "";
     if (!contentType.toLowerCase().includes("application/json")) {
       return NextResponse.json(
-        { success: false, error: "Content-Type must be application/json." },
+        { success: false, error: "Invalid submission format. Please submit via the registration form." },
         { status: 415 }
       );
     }
@@ -166,7 +167,7 @@ export async function POST(req: NextRequest) {
     // 2. CSRF / Origin Verification
     if (!isAllowedOrigin(req)) {
       return NextResponse.json(
-        { success: false, error: "Cross-site request blocked." },
+        { success: false, error: "Session expired. Please refresh the page and try submitting again." },
         { status: 403 }
       );
     }
@@ -179,7 +180,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: "Too many registration attempts. Please wait a few minutes and try again.",
+          error: "Too many registration attempts. Please wait a few minutes before trying again.",
         },
         {
           status: 429,
@@ -197,7 +198,7 @@ export async function POST(req: NextRequest) {
     const contentLength = req.headers.get("content-length");
     if (contentLength && parseInt(contentLength, 10) > MAX_PAYLOAD_BYTES) {
       return NextResponse.json(
-        { success: false, error: "Payload too large." },
+        { success: false, error: "Submission details are too long. Please shorten your input and try again." },
         { status: 413 }
       );
     }
@@ -207,21 +208,21 @@ export async function POST(req: NextRequest) {
       const text = await req.text();
       if (text.length > MAX_PAYLOAD_BYTES) {
         return NextResponse.json(
-          { success: false, error: "Payload too large." },
+          { success: false, error: "Submission details are too long. Please shorten your input and try again." },
           { status: 413 }
         );
       }
       rawBody = JSON.parse(text);
     } catch {
       return NextResponse.json(
-        { success: false, error: "Invalid JSON request payload." },
+        { success: false, error: "Invalid registration data. Please refresh and try again." },
         { status: 400 }
       );
     }
 
     if (!rawBody || typeof rawBody !== "object" || Array.isArray(rawBody)) {
       return NextResponse.json(
-        { success: false, error: "Request payload must be a JSON object." },
+        { success: false, error: "Invalid registration data. Please try again." },
         { status: 400 }
       );
     }
@@ -242,7 +243,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: firstError || "Validation failed.",
+          error: firstError || "Please check your details and try again.",
           errors: validation.errors,
         },
         { status: 400 }
@@ -268,7 +269,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: "Registration service is temporarily unavailable. Please try again shortly.",
+          error: "Registration service is temporarily undergoing maintenance. Please try again shortly.",
         },
         { status: 503 }
       );
@@ -302,7 +303,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: syncResult.error || "Failed to save registration. Please try again.",
+          error: syncResult.error || "Unable to save registration. Please try again shortly.",
         },
         { status: 502 }
       );
@@ -315,9 +316,10 @@ export async function POST(req: NextRequest) {
     });
   } catch {
     return NextResponse.json(
-      { success: false, error: "Internal server error saving registration." },
+      { success: false, error: "Something went wrong on our end. Please try again in a few moments." },
       { status: 500 }
     );
   }
 }
+
 
