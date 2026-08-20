@@ -1,5 +1,4 @@
-import type { NextConfig } from "next";
-
+/** @type {import('next').NextConfig} */
 const securityHeaders = [
   {
     key: "X-Content-Type-Options",
@@ -51,7 +50,7 @@ const securityHeaders = [
   },
 ];
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   // Disable X-Powered-By header
   poweredByHeader: false,
 
@@ -96,4 +95,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
