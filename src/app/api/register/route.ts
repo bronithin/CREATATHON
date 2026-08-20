@@ -19,6 +19,7 @@ interface RegistrationRecord {
 
 interface AppsScriptPayload extends RegistrationRecord {
   secret?: string;
+  adminEmail?: string;
 }
 
 interface SyncResult {
@@ -295,6 +296,7 @@ export async function POST(req: NextRequest) {
       {
         ...newRecord,
         ...(webhookSecret ? { secret: webhookSecret } : {}),
+        ...(GOOGLE_SHEET_CONFIG.adminMail ? { adminEmail: GOOGLE_SHEET_CONFIG.adminMail } : {}),
       },
       webhookUrl
     );

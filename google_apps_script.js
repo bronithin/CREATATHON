@@ -56,7 +56,7 @@ function sanitizeForSheet(val) {
   var str = String(val).replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "");
   var trimmed = str.trim();
   if (!trimmed) return "";
-  
+
   // Formula trigger characters or leading whitespace before formula trigger
   if (/^[=+\-@\t\r]/.test(str) || /^[=+\-@]/.test(trimmed)) {
     return "'" + trimmed;
@@ -84,12 +84,12 @@ function escapeHtml(val) {
 function sanitizeUrl(rawUrl) {
   if (!rawUrl || typeof rawUrl !== "string") return "#";
   var trimmed = rawUrl.trim();
-  
+
   if (trimmed.startsWith("@")) {
     var handle = trimmed.substring(1).replace(/[^a-zA-Z0-9_.]/g, "");
     return "https://instagram.com/" + handle;
   }
-  
+
   var schemeMatch = trimmed.match(/^([a-zA-Z0-9+.-]+):/);
   if (schemeMatch) {
     var scheme = schemeMatch[1].toLowerCase();
@@ -98,11 +98,11 @@ function sanitizeUrl(rawUrl) {
     }
     return trimmed;
   }
-  
+
   if (/^[a-zA-Z0-9]/.test(trimmed)) {
     return "https://" + trimmed;
   }
-  
+
   return "#";
 }
 
@@ -113,12 +113,12 @@ function testAdminEmail() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var scriptProperties = PropertiesService.getScriptProperties();
   var targetEmail = scriptProperties.getProperty("ADMIN_EMAIL") || Session.getActiveUser().getEmail();
-  
+
   if (!targetEmail) {
     Logger.log("No admin email configured in Script Properties (ADMIN_EMAIL).");
     return;
   }
-  
+
   sendAdminNotificationEmail(
     {
       timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
@@ -172,8 +172,9 @@ function doPost(e) {
       ).setMimeType(ContentService.MimeType.JSON);
     }
 
-    // 3. Retrieve Admin Email exclusively from Script Properties (Never trust data.adminEmail)
-    var adminEmail = scriptProperties.getProperty("ADMIN_EMAIL");
+    // 3. Retrieve Admin Email (Check authenticated payload or fallback to Script Properties)
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var adminEmail = (data.adminEmail && typeof data.adminEmail === "string" && emailRegex.test(data.adminEmail.trim()) ? data.adminEmail.trim() : null) || scriptProperties.getProperty("ADMIN_EMAIL");
 
     // 4. Backend Sanitization
     function sanitize(val) {
@@ -320,7 +321,7 @@ function sendAdminNotificationEmail(record, adminEmail, sheetUrl) {
     '</head>' +
     '<body style="margin: 0; padding: 24px 12px; background-color: #F6F3E7; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Helvetica, Arial, sans-serif; color: #18181B; -webkit-font-smoothing: antialiased;">' +
     '  <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 560px; margin: 0 auto; background-color: #FFFFFF; border: 3px solid #18181B; border-radius: 18px; overflow: hidden; box-shadow: 6px 6px 0px #18181B;">' +
-    
+
     '    <!-- 1. Top Pink Festival Marquee Bar -->' +
     '    <tr>' +
     '      <td style="background-color: #FF0052; padding: 8px 16px; text-align: center; border-bottom: 2px solid #18181B;">' +
@@ -329,7 +330,7 @@ function sendAdminNotificationEmail(record, adminEmail, sheetUrl) {
     '        </span>' +
     '      </td>' +
     '    </tr>' +
-    
+
     '    <!-- 2. Hero Yellow Banner -->' +
     '    <tr>' +
     '      <td style="background-color: #FCD60B; padding: 26px 20px 22px 20px; text-align: center; border-bottom: 3px solid #18181B;">' +
@@ -341,23 +342,23 @@ function sendAdminNotificationEmail(record, adminEmail, sheetUrl) {
     '        </h1>' +
     '      </td>' +
     '    </tr>' +
-    
+
     '    <!-- 3. Main Content Area -->' +
     '    <tr>' +
     '      <td style="padding: 24px 20px 20px 20px;">' +
-    
+
     '        <!-- Type Badge -->' +
     '        <div style="text-align: center; margin-bottom: 16px;">' +
     '          <span style="display: inline-block; padding: 6px 16px; background-color: ' + badgeColor + '; color: #FFFFFF; border: 2px solid #18181B; border-radius: 999px; font-size: 12px; font-weight: 800; letter-spacing: 1px; box-shadow: 2px 2px 0px #18181B;">' +
     badgeText +
     '          </span>' +
     '        </div>' +
-    
+
     '        <!-- Participant Details Card -->' +
     '        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FFFDF5; border: 2.5px solid #18181B; border-radius: 14px; box-shadow: 4px 4px 0px #18181B; margin-bottom: 22px;">' +
     '          <tr>' +
     '            <td style="padding: 18px 20px;">' +
-    
+
     '              <!-- Name Header -->' +
     '              <div style="border-bottom: 2px dashed #E4E4E7; padding-bottom: 12px; margin-bottom: 12px;">' +
     '                <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #71717A; display: block; margin-bottom: 2px;">' +
@@ -367,7 +368,7 @@ function sendAdminNotificationEmail(record, adminEmail, sheetUrl) {
     safeName +
     '                </span>' +
     '              </div>' +
-    
+
     '              <!-- Detail Rows -->' +
     '              <table border="0" cellpadding="6" cellspacing="0" width="100%" style="font-size: 13px;">' +
     '                <tr>' +
@@ -407,21 +408,21 @@ function sendAdminNotificationEmail(record, adminEmail, sheetUrl) {
     '                  </td>' +
     '                </tr>' +
     '              </table>' +
-    
+
     '            </td>' +
     '          </tr>' +
     '        </table>' +
-    
+
     '        <!-- Primary CTA Button -->' +
     '        <div style="text-align: center; margin: 10px 0 14px 0;">' +
     '          <a href="' + safeSheetUrl + '" target="_blank" rel="noopener noreferrer" style="display: inline-block; background-color: #FCD60B; color: #18181B; font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; padding: 14px 28px; text-decoration: none; border-radius: 12px; border: 2.5px solid #18181B; box-shadow: 4px 4px 0px #18181B;">' +
     '            📊 OPEN GOOGLE SHEET &rarr;' +
     '          </a>' +
     '        </div>' +
-    
+
     '      </td>' +
     '    </tr>' +
-    
+
     '    <!-- 4. Footer -->' +
     '    <tr>' +
     '      <td style="background-color: #F6F3E7; padding: 14px 16px; text-align: center; border-top: 2.5px solid #18181B;">' +
@@ -430,7 +431,7 @@ function sendAdminNotificationEmail(record, adminEmail, sheetUrl) {
     '        </p>' +
     '      </td>' +
     '    </tr>' +
-    
+
     '  </table>' +
     '</body>' +
     '</html>';

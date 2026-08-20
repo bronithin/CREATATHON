@@ -107,3 +107,15 @@ test("Apps Script Security: URL Sanitization (sanitizeUrl)", () => {
   assert.equal(sanitizeUrl("@my_creator_handle"), "https://instagram.com/my_creator_handle");
   assert.equal(sanitizeUrl("instagram.com/test"), "https://instagram.com/test");
 });
+
+test("Apps Script Security: Admin Email Parsing & Fallback", () => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function resolveAdminEmail(payloadEmail, scriptPropEmail) {
+    return (payloadEmail && typeof payloadEmail === "string" && emailRegex.test(payloadEmail.trim()) ? payloadEmail.trim() : null) || scriptPropEmail;
+  }
+
+  assert.equal(resolveAdminEmail("nithinnt07@gmail.com", "fallback@test.com"), "nithinnt07@gmail.com");
+  assert.equal(resolveAdminEmail("", "fallback@test.com"), "fallback@test.com");
+  assert.equal(resolveAdminEmail("invalid-email", "fallback@test.com"), "fallback@test.com");
+  assert.equal(resolveAdminEmail(undefined, "fallback@test.com"), "fallback@test.com");
+});
