@@ -63,6 +63,11 @@ const nextConfig = {
     minimumCacheTTL: 31536000,
   },
 
+  // Ensure Webpack is used cleanly on Linux environments without GLIBC 2.29
+  webpack: (config) => {
+    return config;
+  },
+
   // Native permanent redirect for legacy URL
   async redirects() {
     return [
